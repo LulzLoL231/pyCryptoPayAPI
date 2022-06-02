@@ -65,7 +65,7 @@ Look full code in the [examples](https://github.com/LulzLoL231/pyCryptoBotAPI/tr
 
 ### get_me
 A simple method for testing your app's authentication token. Requires no parameters. Returns basic information about the app.  
-Returns: [GetMe](#typesgetme) object.
+Returns: [Application](#typesapplication) object.
 
 ```python
 cp.get_me()
@@ -227,7 +227,7 @@ key            | type
 `completed_at` | `datetime.datetime`
 `comment`      | `Optional[str]`
 
-#### types.GetMe
+#### types.Application
 key                               | type
 --------------------------------- | -----
 `app_id`                          | `int`
