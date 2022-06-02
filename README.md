@@ -1,11 +1,11 @@
-# pyCryptoBotAPI
+# pyCryptoPayAPI
 ![CryptoPay](https://raw.githubusercontent.com/Foile/crypto-pay-api/24a2c869ddc78d12109319c180764ad055fbe687/media/header.svg)
 
 **[Crypto Pay](http://t.me/CryptoBot/?start=pay)** is a payment system based on [@CryptoBot](http://t.me/CryptoBot), which allows you to accept payments in cryptocurrency using the API.
 
 This library help you to work with **Crypto Pay** via [Crypto Pay API](https://telegra.ph/Crypto-Pay-API-11-25) in yours Python scripts.
 
-![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/LulzLoL231/pyCryptoBotAPI) ![GitHub Pipenv locked dependency version](https://img.shields.io/github/pipenv/locked/dependency-version/LulzLoL231/pyCryptoBotAPI/aiohttp) ![GitHub Pipenv locked dependency version](https://img.shields.io/github/pipenv/locked/dependency-version/LulzLoL231/pyCryptoBotAPI/pydantic) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/LulzLoL231/pyCryptoBotAPI/CodeQL)
+![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/LulzLoL231/pyCryptoPayAPI) ![GitHub Pipenv locked dependency version](https://img.shields.io/github/pipenv/locked/dependency-version/LulzLoL231/pyCryptoPayAPI/aiohttp) ![GitHub Pipenv locked dependency version](https://img.shields.io/github/pipenv/locked/dependency-version/LulzLoL231/pyCryptoPayAPI/pydantic) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/LulzLoL231/pyCryptoPayAPI/CodeQL)
 
 ## Usage
 
@@ -16,7 +16,7 @@ Next step: try to call a simple `get_me()` method to check that everything is wo
 ```python
 from asyncio import run
 
-from CryptoBotAPI import CryptoPay
+from CryptoPayAPI import CryptoPay
 
 cp = CryptoPay('YOUR_API_TOKEN')
 print(run(cp.get_me()))  # Returns Application object.
@@ -25,7 +25,7 @@ print(run(cp.get_me()))  # Returns Application object.
 You can use `testnet` for testing your applications. Defaults is `mainnet`.
 
 ```python
-from CryptoBotAPI import CryptoPay
+from CryptoPayAPI import CryptoPay
 
 cp = CryptoPay('YOUR_API_TOKEN', testnet=True)
 ```
@@ -35,8 +35,8 @@ Also, you can get supported [assets](#typesassets), [paid button names](#typespa
 
 ```python
 from asyncio import get_event_loop
-from CryptoBotAPI import CryptoPay
-from CryptoBotAPI.types import Assets, PaidButtonNames, InvoiceStatus
+from CryptoPayAPI import CryptoPay
+from CryptoPayAPI.types import Assets, PaidButtonNames, InvoiceStatus
 
 
 lp = get_event_loop()
@@ -54,7 +54,7 @@ print(lp.run_until_complete(cp.get_invoices(
 )))  # Prints all paid invoices.
 ```
 
-Look full code in the [examples](https://github.com/LulzLoL231/pyCryptoBotAPI/tree/main/examples).
+Look full code in the [examples](https://github.com/LulzLoL231/pyCryptoPayAPI/tree/main/examples).
 
 
 ## API methods
