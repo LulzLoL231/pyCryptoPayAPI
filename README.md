@@ -1,4 +1,4 @@
-# pyCryptoBotApi
+# pyCryptoBotAPI
 **[Crypto Pay](http://t.me/CryptoBot/?start=pay)** is a payment system based on [@CryptoBot](http://t.me/CryptoBot), which allows you to accept payments in cryptocurrency using the API.
 
 This library help you to work with **Crypto Pay** via [Crypto Pay API](https://telegra.ph/Crypto-Pay-API-11-25) in yours Python scripts.
