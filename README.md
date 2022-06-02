@@ -5,7 +5,7 @@
 
 This library help you to work with **Crypto Pay** via [Crypto Pay API](https://telegra.ph/Crypto-Pay-API-11-25) in yours Python scripts.
 
-![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/LulzLoL231/pyCryptoBotAPI) ![GitHub Pipenv locked dependency version](https://img.shields.io/github/pipenv/locked/dependency-version/LulzLoL231/pyCryptoBotAPI/aiohttp) ![GitHub Pipenv locked dependency version](https://img.shields.io/github/pipenv/locked/dependency-version/LulzLoL231/pyCryptoBotAPI/pydantic)
+![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/LulzLoL231/pyCryptoBotAPI) ![GitHub Pipenv locked dependency version](https://img.shields.io/github/pipenv/locked/dependency-version/LulzLoL231/pyCryptoBotAPI/aiohttp) ![GitHub Pipenv locked dependency version](https://img.shields.io/github/pipenv/locked/dependency-version/LulzLoL231/pyCryptoBotAPI/pydantic) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/LulzLoL231/pyCryptoBotAPI/CodeQL)
 
 ## Usage
 
