@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-#  CryptoBotAPI - API errors.
+#  CryptoPayAPI - API errors.
 #  Created by LulzLoL231 at 2/6/22
 #
 class BaseError(Exception):

@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 #
-#  pyCryptoBotAPI - Testnet example usage.
+#  pyCryptoPayAPI - Testnet example usage.
 #  Created by LulzLoL231 at 3/6/22
 #
 from os import environ
 from asyncio import run
 
-from CryptoBotAPI import CryptoPay
+from CryptoPayAPI import CryptoPay
 
 
-TOKEN = environ.get('CRYPTOBOT_API_TOKEN', '')
+TOKEN = environ.get('CRYPTOPAY_API_TOKEN', '')
 if not TOKEN:
-    print('Use shell argument "CRYPTOBOT_API_TOKEN" for your Crypto Pay API token!')
+    print('Use shell argument "CRYPTOPAY_API_TOKEN" for your Crypto Pay API token!')
     exit(1)
 
 
