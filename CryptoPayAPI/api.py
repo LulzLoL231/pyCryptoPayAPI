@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-#  CryptoBotAPI - API.
+#  CryptoPayAPI - API.
 #  Created by LulzLoL231 at 2/6/22
 #
 import logging
