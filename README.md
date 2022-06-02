@@ -16,7 +16,7 @@ from asyncio import run
 from CryptoBotAPI import CryptoPay
 
 cp = CryptoPay('YOUR_API_TOKEN')
-print(run(cp.get_me()))  # Returns GetMe object.
+print(run(cp.get_me()))  # Returns Application object.
 ```
 
 You can use `testnet` for testing your applications. Defaults is `mainnet`.
