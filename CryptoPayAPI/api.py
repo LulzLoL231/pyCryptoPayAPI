@@ -40,6 +40,11 @@ class CryptoPay:
             self.endpoint = TESTHOST
         else:
             self.endpoint = MAINHOST
+        self.session = aiohttp.ClientSession(
+            headers=self.headers, timeout=aiohttp.ClientTimeout(
+                self.timeout_sec
+            )
+        )
 
     async def _callApi(self, http_method: str, api_method: str, query: dict = {}) -> dict:
         '''Makes a api call.
@@ -53,47 +58,52 @@ class CryptoPay:
             dict: API response as JSON dict viceversa None.
         '''
         self.log.debug(f'Called with args ({http_method}, {api_method}, {query})')
-        async with aiohttp.ClientSession(headers=self.headers, timeout=aiohttp.ClientTimeout(self.timeout_sec)) as sess:
-            if query:
-                url = self.endpoint + api_method + f'?{urllib.parse.urlencode(query)}'
+        if query:
+            url = self.endpoint + api_method + f'?{urllib.parse.urlencode(query)}'
+        else:
+            url = self.endpoint + api_method
+        async with self.session.request(http_method, url) as resp:
+            if resp.ok:
+                data = await resp.json()
+                self.log.debug(f'API answer: {data}')
+                if data['ok']:
+                    return data['result']
+                else:
+                    raise UnexpectedError(
+                        data,
+                        f'[{data["error"]["code"]}] {data["error"]["name"]}'
+                    )
             else:
-                url = self.endpoint + api_method
-            async with sess.request(http_method, url) as resp:
-                if resp.ok:
+                if resp.status == 401:
+                    raise UnauthorizedError({}, 'Token not found!')
+                elif resp.status == 405:
+                    raise MethodNotFoundError(
+                        {}, f'Method {api_method} not found!'
+                    )
+                elif resp.status == 400:
                     data = await resp.json()
-                    self.log.debug(f'API answer: {data}')
-                    if data['ok']:
-                        return data['result']
+                    err = data['error']['name']
+                    if err == 'EXPIRES_IN_INVALID':
+                        raise ExpiresInInvalidError(
+                            data, f'Expires "{query["expires_in"]}" is invalid!'
+                        )
                     else:
                         raise UnexpectedError(
                             data,
                             f'[{data["error"]["code"]}] {data["error"]["name"]}'
                         )
                 else:
-                    if resp.status == 401:
-                        raise UnauthorizedError({}, 'Token not found!')
-                    elif resp.status == 405:
-                        raise MethodNotFoundError(
-                            {}, f'Method {api_method} not found!'
-                        )
-                    elif resp.status == 400:
-                        data = await resp.json()
-                        err = data['error']['name']
-                        if err == 'EXPIRES_IN_INVALID':
-                            raise ExpiresInInvalidError(
-                                data, f'Expires "{query["expires_in"]}" is invalid!'
-                            )
-                        else:
-                            raise UnexpectedError(
-                                data,
-                                f'[{data["error"]["code"]}] {data["error"]["name"]}'
-                            )
-                    else:
-                        data = await resp.json()
-                        raise UnexpectedError(
-                            data,
-                            f'[{data["error"]["code"]}] {data["error"]["name"]}'
-                        )
+                    data = await resp.json()
+                    raise UnexpectedError(
+                        data,
+                        f'[{data["error"]["code"]}] {data["error"]["name"]}'
+                    )
+
+    async def close_session(self) -> None:
+        '''Closing ClientSession.
+        '''
+        self.log.debug('Called!')
+        await self.session.close()
 
     async def get_me(self) -> types.Application:
         '''Returns basic information about an app.

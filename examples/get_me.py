@@ -20,6 +20,7 @@ async def main():
 
     app = await cp.get_me()
     print('Application: ', app)
+    await cp.close_session()  # always close session before exiting.
 
 
 run(main())

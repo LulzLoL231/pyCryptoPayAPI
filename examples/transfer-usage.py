@@ -28,6 +28,7 @@ async def main():
     )
 
     print('Transfer: ', transfer)
+    await cp.close_session()  # always close session before exiting.
 
 
 run(main())

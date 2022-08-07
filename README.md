@@ -52,6 +52,8 @@ print(lp.run_until_complete(cp.create_invoice(
 print(lp.run_until_complete(cp.get_invoices(
     Assets.USDT, status=InvoiceStatus.PAID
 )))  # Prints all paid invoices.
+
+lp.run_until_complete(cp.close_session())  # closing aiohttp.ClientSession before exiting.
 ```
 
 Look full code in the [examples](https://github.com/LulzLoL231/pyCryptoPayAPI/tree/main/examples).
