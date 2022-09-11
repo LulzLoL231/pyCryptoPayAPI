@@ -7,7 +7,7 @@ import logging
 import urllib.parse
 from typing import Dict, Optional, Union
 
-import aiohttp
+from httpx import AsyncClient, Timeout
 
 from . import types
 from .errors import (
@@ -16,8 +16,8 @@ from .errors import (
 )
 
 
-MAINHOST = 'https://pay.crypt.bot/api/'
-TESTHOST = 'https://testnet-pay.crypt.bot/api/'
+MAINHOST = 'https://pay.crypt.bot/api'
+TESTHOST = 'https://testnet-pay.crypt.bot/api'
 
 
 class CryptoPay:
@@ -40,10 +40,9 @@ class CryptoPay:
             self.endpoint = TESTHOST
         else:
             self.endpoint = MAINHOST
-        self.session = aiohttp.ClientSession(
-            headers=self.headers, timeout=aiohttp.ClientTimeout(
-                self.timeout_sec
-            )
+        self.client = AsyncClient(
+            headers=self.headers, base_url=self.endpoint,
+            timeout=Timeout(self.timeout_sec)
         )
 
     async def _callApi(self, http_method: str, api_method: str, query: dict = {}) -> dict:
@@ -59,51 +58,45 @@ class CryptoPay:
         '''
         self.log.debug(f'Called with args ({http_method}, {api_method}, {query})')
         if query:
-            url = self.endpoint + api_method + f'?{urllib.parse.urlencode(query)}'
+            params = urllib.parse.urlencode(query)
         else:
-            url = self.endpoint + api_method
-        async with self.session.request(http_method, url) as resp:
-            if resp.ok:
+            params = None
+        resp = await self.client.request(http_method, api_method, params=params)
+        if resp.is_success:
+            data = resp.json()
+            self.log.debug(f'API answer: {data}')
+            if data['ok']:
+                return data['result']
+            else:
+                raise UnexpectedError(
+                    data,
+                    f'[{data["error"]["code"]}] {data["error"]["name"]}'
+                )
+        else:
+            if resp.status_code == 401:
+                raise UnauthorizedError({}, 'Token not found!')
+            elif resp.status_code == 405:
+                raise MethodNotFoundError(
+                    {}, f'Method {api_method} not found!'
+                )
+            elif resp.status_code == 400:
                 data = await resp.json()
-                self.log.debug(f'API answer: {data}')
-                if data['ok']:
-                    return data['result']
+                err = data['error']['name']
+                if err == 'EXPIRES_IN_INVALID':
+                    raise ExpiresInInvalidError(
+                        data, f'Expires "{query["expires_in"]}" is invalid!'
+                    )
                 else:
                     raise UnexpectedError(
                         data,
                         f'[{data["error"]["code"]}] {data["error"]["name"]}'
                     )
             else:
-                if resp.status == 401:
-                    raise UnauthorizedError({}, 'Token not found!')
-                elif resp.status == 405:
-                    raise MethodNotFoundError(
-                        {}, f'Method {api_method} not found!'
-                    )
-                elif resp.status == 400:
-                    data = await resp.json()
-                    err = data['error']['name']
-                    if err == 'EXPIRES_IN_INVALID':
-                        raise ExpiresInInvalidError(
-                            data, f'Expires "{query["expires_in"]}" is invalid!'
-                        )
-                    else:
-                        raise UnexpectedError(
-                            data,
-                            f'[{data["error"]["code"]}] {data["error"]["name"]}'
-                        )
-                else:
-                    data = await resp.json()
-                    raise UnexpectedError(
-                        data,
-                        f'[{data["error"]["code"]}] {data["error"]["name"]}'
-                    )
-
-    async def close_session(self) -> None:
-        '''Closing ClientSession.
-        '''
-        self.log.debug('Called!')
-        await self.session.close()
+                data = await resp.json()
+                raise UnexpectedError(
+                    data,
+                    f'[{data["error"]["code"]}] {data["error"]["name"]}'
+                )
 
     async def get_me(self) -> types.Application:
         '''Returns basic information about an app.
