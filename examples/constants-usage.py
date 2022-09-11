@@ -30,7 +30,6 @@ async def main():
         status=InvoiceStatus.ACTIVE
     )
     print(f'You have {len(invoices)} active invoices!')
-    await cp.close_session()  # always close session before exiting.
 
 
 run(main())

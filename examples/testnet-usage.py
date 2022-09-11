@@ -21,7 +21,6 @@ async def main():
     app = await cp.get_me()
 
     print('Testnet application: ', app)
-    await cp.close_session()  # always close session before exiting.
 
 
 run(main())
