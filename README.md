@@ -3,7 +3,7 @@
 
 **[Crypto Pay](http://t.me/CryptoBot/?start=pay)** is a payment system based on [@CryptoBot](http://t.me/CryptoBot), which allows you to accept payments in cryptocurrency using the API.
 
-This library help you to work with **Crypto Pay** via [Crypto Pay API](https://telegra.ph/Crypto-Pay-API-11-25) in yours Python scripts.
+This library help you to work with **Crypto Pay** via [Crypto Pay API](https://help.crypt.bot/crypto-pay-api) in yours Python scripts.
 
 [![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/LulzLoL231/pyCryptoPayAPI)](#)
 [![GitHub Pipenv locked dependency version](https://img.shields.io/github/pipenv/locked/dependency-version/LulzLoL231/pyCryptoPayAPI/httpx)](https://www.python-httpx.org/)
