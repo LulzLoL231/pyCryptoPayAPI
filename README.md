@@ -5,9 +5,9 @@
 
 This library help you to work with **Crypto Pay** via [Crypto Pay API](https://telegra.ph/Crypto-Pay-API-11-25) in yours Python scripts.
 
-![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/LulzLoL231/pyCryptoPayAPI)
-![GitHub Pipenv locked dependency version](https://img.shields.io/github/pipenv/locked/dependency-version/LulzLoL231/pyCryptoPayAPI/httpx)
-![GitHub Pipenv locked dependency version](https://img.shields.io/github/pipenv/locked/dependency-version/LulzLoL231/pyCryptoPayAPI/pydantic)  
+[![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/LulzLoL231/pyCryptoPayAPI)](#)
+[![GitHub Pipenv locked dependency version](https://img.shields.io/github/pipenv/locked/dependency-version/LulzLoL231/pyCryptoPayAPI/httpx)](https://www.python-httpx.org/)
+[![GitHub Pipenv locked dependency version](https://img.shields.io/github/pipenv/locked/dependency-version/LulzLoL231/pyCryptoPayAPI/pydantic)](https://pydantic-docs.helpmanual.io/)  
 [![CodeQL](https://github.com/LulzLoL231/pyCryptoPayAPI/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/LulzLoL231/pyCryptoPayAPI/actions/workflows/codeql-analysis.yml)
 [![Library test](https://github.com/LulzLoL231/pyCryptoPayAPI/actions/workflows/lib-test.yml/badge.svg)](https://github.com/LulzLoL231/pyCryptoPayAPI/actions/workflows/lib-test.yml)
 
