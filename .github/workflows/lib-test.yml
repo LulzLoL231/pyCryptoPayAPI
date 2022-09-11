@@ -16,6 +16,10 @@ jobs:
         python-version: ["3.8", "3.9", "3.10"]
     
     environment: development
+    env: 
+      API_TOKEN: ${{ secrets.API_TOKEN }}
+      APP_NAME: ${{ secrets.APP_NAME }}
+      APP_ID: ${{ secrets.APP_ID }}
 
     steps:
       - uses: actions/checkout@v3
