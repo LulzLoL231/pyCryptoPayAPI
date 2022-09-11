@@ -7,6 +7,10 @@ This library help you to work with **Crypto Pay** via [Crypto Pay API](https://t
 
 ![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/LulzLoL231/pyCryptoPayAPI) ![GitHub Pipenv locked dependency version](https://img.shields.io/github/pipenv/locked/dependency-version/LulzLoL231/pyCryptoPayAPI/aiohttp) ![GitHub Pipenv locked dependency version](https://img.shields.io/github/pipenv/locked/dependency-version/LulzLoL231/pyCryptoPayAPI/pydantic) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/LulzLoL231/pyCryptoPayAPI/CodeQL)
 
+## Install
+Via git: `pip install git+https://github.com/LulzLoL231/pyCryptoPayAPI.git`  
+Via source: `pip install ./`, *in source folder*.
+
 ## Usage
 
 ### API  
