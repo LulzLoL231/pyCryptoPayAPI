@@ -3,12 +3,18 @@
 #  CryptoPayAPI - types.
 #  Created by LulzLoL231 at 2/6/22
 #
+import logging
 from enum import Enum
+from hmac import HMAC
+from hashlib import sha256
 from decimal import Decimal
 from datetime import datetime
 from typing import Literal, Optional
 
 from pydantic import BaseModel
+
+
+log = logging.getLogger('CryptoPay')
 
 
 class Assets(Enum):
@@ -40,6 +46,10 @@ class InvoiceStatus(Enum):
 
     def __str__(self) -> str:
         return self.value
+
+
+class UpdateType(Enum):
+    INVOICE_PAID = 'invoice_paid'
 
 
 class Invoice(BaseModel):
@@ -99,3 +109,28 @@ class Currency(BaseModel):
     code: str
     url: Optional[str]
     decimals: int
+
+
+class Update(BaseModel):
+    update_id: int
+    update_type: UpdateType
+    request_date: datetime
+    payload: Invoice
+    raw_body: bytes | None = None
+
+    def check_signature(self, api_key: str, sign: str) -> bool:
+        '''Check update signature.
+
+        Args:
+            api_key (str): CryptoPay app API key.
+            sign (str): Update signature. In request headers `crypto-pay-api-signature`.
+
+        Returns:
+            bool: Is signature verified?
+        '''
+        log.debug(f'Called with args: ({api_key}, {sign})')
+        secret = sha256(api_key.encode()).hexdigest()
+        hmac = HMAC(secret.encode(), self.raw_body, digestmod=sha256)
+        body_sign = hmac.hexdigest()
+        log.debug(f'Calculated hash: {body_sign}')
+        return body_sign == sign

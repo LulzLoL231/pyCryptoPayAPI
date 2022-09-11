@@ -5,6 +5,7 @@
 #
 import logging
 import urllib.parse
+from json import loads
 from typing import Dict, Optional, Union
 
 from httpx import AsyncClient, Timeout
@@ -12,7 +13,7 @@ from httpx import AsyncClient, Timeout
 from . import types
 from .errors import (
     UnauthorizedError, MethodNotFoundError, UnexpectedError,
-    ExpiresInInvalidError
+    ExpiresInInvalidError, UpdateSignatureError
 )
 
 
@@ -69,33 +70,34 @@ class CryptoPay:
                 return data['result']
             else:
                 raise UnexpectedError(
-                    data,
-                    f'[{data["error"]["code"]}] {data["error"]["name"]}'
+                    f'[{data["error"]["code"]}] {data["error"]["name"]}',
+                    data
                 )
         else:
             if resp.status_code == 401:
-                raise UnauthorizedError({}, 'Token not found!')
+                raise UnauthorizedError('Token not found!')
             elif resp.status_code == 405:
                 raise MethodNotFoundError(
-                    {}, f'Method {api_method} not found!'
+                    f'Method {api_method} not found!'
                 )
             elif resp.status_code == 400:
                 data = await resp.json()
                 err = data['error']['name']
                 if err == 'EXPIRES_IN_INVALID':
                     raise ExpiresInInvalidError(
-                        data, f'Expires "{query["expires_in"]}" is invalid!'
+                        f'Expires "{query["expires_in"]}" is invalid!',
+                        raw_response=data
                     )
                 else:
                     raise UnexpectedError(
-                        data,
-                        f'[{data["error"]["code"]}] {data["error"]["name"]}'
+                        f'[{data["error"]["code"]}] {data["error"]["name"]}',
+                        raw_response=data
                     )
             else:
                 data = await resp.json()
                 raise UnexpectedError(
-                    data,
-                    f'[{data["error"]["code"]}] {data["error"]["name"]}'
+                    f'[{data["error"]["code"]}] {data["error"]["name"]}',
+                    raw_response=data
                 )
 
     async def get_me(self) -> types.Application:
@@ -252,3 +254,32 @@ class CryptoPay:
             params['disable_send_notification'] = 'true'
         result = await self._callApi('POST', 'transfer', params)
         return types.Transfer(**result)
+
+    async def process_webhook_update(self,
+                                     body: bytes,
+                                     headers: dict) -> types.Update:
+        '''Process webhook update.
+
+        Args:
+            body (bytes): Update request body.
+            headers (dict): Update request headers.
+
+        Returns:
+            types.Update: Webhook update.
+        '''
+        self.log.debug(f'Called with args: ({body}, {headers})')  # type: ignore
+        update = types.Update(**loads(body), raw_body=body)
+        sign = headers.get('crypto-pay-api-signature', '')
+        if not sign:
+            raise UpdateSignatureError(
+                'Not found signature!',
+                raw_response=update.dict(),
+                raw_headers=headers
+            )
+        if not update.check_signature(self.api_key, sign):
+            raise UpdateSignatureError(
+                'Signature validation error!',
+                raw_response=update.dict(),
+                raw_headers=headers
+            )
+        return update

@@ -4,9 +4,13 @@
 #  Created by LulzLoL231 at 2/6/22
 #
 class BaseError(Exception):
-    def __init__(self, raw_response: dict, *args: object) -> None:
+    def __init__(self,
+                 *args: object,
+                 raw_response: dict | None = None,
+                 raw_headers: dict | None = None) -> None:
         super().__init__(*args)
         self.raw_response = raw_response
+        self.raw_headers = raw_headers
 
 
 class UnauthorizedError(BaseError):
@@ -22,4 +26,8 @@ class UnexpectedError(BaseError):
 
 
 class ExpiresInInvalidError(BaseError):
+    pass
+
+
+class UpdateSignatureError(BaseError):
     pass
