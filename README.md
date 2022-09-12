@@ -68,6 +68,23 @@ print(lp.run_until_complete(cp.get_invoices(
 )))  # Prints all paid invoices.
 ```
 
+### Webhooks
+Use Webhooks to get updates for your app, Crypto Pay will send an HTTPS POST request to the specified URL, containing a JSON-serialized [Update](#typesupdate).  
+Read more about webhooks in [Crypto Pay Docs](https://help.crypt.bot/crypto-pay-api#webhooks)!  
+Use `CryptoPay.process_webhook_update` function, for processing Crypto Pay requests.  
+Check [webhook example](https://github.com/LulzLoL231/pyCryptoPayAPI/tree/main/examples/webhook-example.py) for more info.
+
+#### CryptoPay.process_webhook_update
+*Coroutine*. Processing webhook request, returns [Update](#typesupdate) object.
+
+Arguments:
+  * **body** (`bytes`) - JSON content from Crypto Pay request in bytes.
+  * **headers** (`dict[str, str]`) - Request headers.
+```python
+update = await cp.process_webhook_update(body, headers)
+print(f'Recieved {update.payload.amount} {update.payload.asset}!')  # Recieved 10.0 ETH
+```
+
 Look full code in the [examples](https://github.com/LulzLoL231/pyCryptoPayAPI/tree/main/examples).
 
 
@@ -179,23 +196,6 @@ Returns: array of [Currency](#typescurrency) objects.
 
 ```python
 cp.get_currencies()
-```
-
-## Webhooks
-Use Webhooks to get updates for your app, Crypto Pay will send an HTTPS POST request to the specified URL, containing a JSON-serialized [Update](#typesupdate).  
-Read more about webhooks in [Crypto Pay Docs](https://help.crypt.bot/crypto-pay-api#webhooks)!  
-Use `CryptoPay.process_webhook_update` function, for processing Crypto Pay requests.  
-Check [webhook example](https://github.com/LulzLoL231/pyCryptoPayAPI/tree/main/examples/webhook-example.py) for more info.
-
-### CryptoPay.process_webhook_update
-*Coroutine*. Processing webhook request, returns [Update](#typesupdate) object.
-
-Arguments:
-  * **body** (`bytes`) - JSON content from Crypto Pay request in bytes.
-  * **headers** (`dict[str, str]`) - Request headers.
-```python
-update = await cp.process_webhook_update(body, headers)
-print(f'Recieved {update.payload.amount} {update.payload.asset}!')  # Recieved 10.0 ETH
 ```
 
 ## Constants and types
