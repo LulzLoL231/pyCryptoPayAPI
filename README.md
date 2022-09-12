@@ -119,7 +119,7 @@ cp.create_invoice(
 )
 ```
 
-## transfer
+### transfer
 Use this method to send coins from your app to the user. Returns object of completed transfer.
 
 Arguments:
@@ -136,7 +136,7 @@ cp.transfer(265300852, Assets.USDT, 3.0, 'pCBA226ghd', comment='donate')
 ```
 
 
-## get_invoice
+### get_invoice
 Use this method to get invoices of your app. On success, the returns array of [Invoice](#typesinvoice).
 
 Arguments:
@@ -154,7 +154,7 @@ cp.get_invoices(
 )
 ```
 
-## get_balance
+### get_balance
 Use this method to get balance of your app. Returns array of assets.
 
 Returns: array of [Balance](#typesbalance) objects.
@@ -163,7 +163,7 @@ Returns: array of [Balance](#typesbalance) objects.
 cp.get_balance()
 ```
 
-## get_exchange_rates
+### get_exchange_rates
 Use this method to get exchange rates of supported currencies. Returns array of currencies.
 
 Returns: array of [ExchangeRate](#typesexchangerate) objects.
@@ -172,13 +172,30 @@ Returns: array of [ExchangeRate](#typesexchangerate) objects.
 cp.get_exchange_rates()
 ```
 
-## get_currencies
+### get_currencies
 Use this method to supported currencies. Returns array of currencies.
 
 Returns: array of [Currency](#typescurrency) objects.
 
 ```python
 cp.get_currencies()
+```
+
+## Webhooks
+Use Webhooks to get updates for your app, Crypto Pay will send an HTTPS POST request to the specified URL, containing a JSON-serialized [Update](#typesupdate).  
+Read more about webhooks in [Crypto Pay Docs](https://help.crypt.bot/crypto-pay-api#webhooks)!  
+Use `CryptoPay.process_webhook_update` function, for processing Crypto Pay requests.  
+Check [webhook example](https://github.com/LulzLoL231/pyCryptoPayAPI/tree/main/examples/webhook-example.py) for more info.
+
+### CryptoPay.process_webhook_update
+*Coroutine*. Processing webhook request, returns [Update](#typesupdate) object.
+
+Arguments:
+  * **body** (`bytes`) - JSON content from Crypto Pay request in bytes.
+  * **headers** (`dict[str, str]`) - Request headers.
+```python
+update = await cp.process_webhook_update(body, headers)
+print(f'Recieved {update.payload.amount} {update.payload.asset}!')  # Recieved 10.0 ETH
 ```
 
 ## Constants and types
@@ -275,3 +292,16 @@ key             | type
 `code`          | `str`
 `url`           | `Optional[str]`
 `decimals`      | `int`
+
+#### types.UpdateType
+constant                  | value
+------------------------- | --------------
+`UpdateType.INVOICE_PAID` | `invoice_paid`
+
+#### types.Update
+key            | type
+-------------- | ------------------------------
+`update_id`    | `int`
+`update_type`  | [UpdateType](#typesupdatetype)
+`request_date` | `datetime`
+`payload`      | [Invoice](#typesinvoice)
