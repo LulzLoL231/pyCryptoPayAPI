@@ -30,7 +30,7 @@ setup(extras_require={"dev": ["attrs==22.1.0; python_version >= '3.5'", 'autopep
       description='Python API wrapper for Crypto Pay API',
       author='Maxim Mosin',
       author_email='max@mosin.pw',
-      license='Apache License, Version 2.0, see LICENSE file',
+      license='MIT License, see LICENSE file',
       keywords=['cryptopay', 'crypto'],
       url='https://github.com/LulzLoL231/pyCryptoPayAPI',
       download_url='https://github.com/LulzLoL231/pyCryptoPayAPI/archive/master.zip',
