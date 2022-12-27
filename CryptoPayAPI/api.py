@@ -6,7 +6,7 @@
 import logging
 import urllib.parse
 from json import loads
-from typing import Dict, Optional, Union
+from typing import Dict, Optional, Union, List
 
 from httpx import AsyncClient, Timeout
 
@@ -110,31 +110,31 @@ class CryptoPay:
         result = await self._callApi('GET', 'getMe')
         return schemas.Application(**result)
 
-    async def get_balance(self) -> list[schemas.Balance]:
+    async def get_balance(self) -> List[schemas.Balance]:
         '''Use this method to get a balance of your app.
 
         Returns:
-            list[types.Balance]: Array of assets.
+            List[types.Balance]: Array of assets.
         '''
         self.log.debug('Called!')
         result = await self._callApi('GET', 'getBalance')
         return [schemas.Balance(**i) for i in result]
 
-    async def get_exchange_rates(self) -> list[schemas.ExchangeRate]:
+    async def get_exchange_rates(self) -> List[schemas.ExchangeRate]:
         '''Use this method to get exchange rates of supported currencies.
 
         Returns:
-            list[types.ExchangeRate]: Array of currencies.
+            List[types.ExchangeRate]: Array of currencies.
         '''
         self.log.debug('Called!')
         result = await self._callApi('GET', 'getExchangeRates')
         return [schemas.ExchangeRate(**i) for i in result]
 
-    async def get_currencies(self) -> list[schemas.Currency]:
+    async def get_currencies(self) -> List[schemas.Currency]:
         '''Use this method to get a list of supported currencies.
 
         Returns:
-            list[types.Currency]: Array of currencies.
+            List[types.Currency]: Array of currencies.
         '''
         self.log.debug('Called!')
         result = await self._callApi('GET', 'getCurrencies')
@@ -194,7 +194,7 @@ class CryptoPay:
                            invoice_ids: Optional[str] = None,
                            status: Optional[schemas.InvoiceStatus] = None,
                            offset: int = 0,
-                           count: int = 100) -> list[schemas.Invoice]:
+                           count: int = 100) -> List[schemas.Invoice]:
         '''Use this method to get invoices of your app.
 
         Args:
@@ -205,7 +205,7 @@ class CryptoPay:
             count (int): Number of invoices to be returned. Values between 1-1000 are accepted. Defaults to 100.
 
         Returns:
-            list[types.Invoice]: Array of invoices.
+            List[types.Invoice]: Array of invoices.
         '''
         self.log.debug(f'Called with args ({asset}, {invoice_ids}, {status}, {offset}, {count})')
         params: Dict[str, Union[str, int]] = {
