@@ -116,7 +116,7 @@ class Update(BaseModel):
     update_type: UpdateType
     request_date: datetime
     payload: Invoice
-    raw_body: bytes | None = None
+    raw_body: Optional[bytes] = None
 
     def check_signature(self, api_key: str, sign: str) -> bool:
         '''Check update signature.
