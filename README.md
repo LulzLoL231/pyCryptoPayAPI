@@ -45,12 +45,12 @@ cp = CryptoPay('YOUR_API_TOKEN', testnet=True)
 ```
 
 You can find all available methods in [Methods chapter](#api-methods).  
-Also, you can get supported [assets](#typesassets), [paid button names](#typespaidbuttonnames) and [invoice status](#typesinvoicestatus):
+Also, you can get supported [assets](#schemasassets), [paid button names](#schemaspaidbuttonnames) and [invoice status](#schemasinvoicestatus):
 
 ```python
 from asyncio import get_event_loop
 from CryptoPayAPI import CryptoPay
-from CryptoPayAPI.types import Assets, PaidButtonNames, InvoiceStatus
+from CryptoPayAPI.schemas import Assets, PaidButtonNames, InvoiceStatus
 
 
 lp = get_event_loop()
@@ -69,13 +69,13 @@ print(lp.run_until_complete(cp.get_invoices(
 ```
 
 ### Webhooks
-Use Webhooks to get updates for your app, Crypto Pay will send an HTTPS POST request to the specified URL, containing a JSON-serialized [Update](#typesupdate).  
+Use Webhooks to get updates for your app, Crypto Pay will send an HTTPS POST request to the specified URL, containing a JSON-serialized [Update](#schemasupdate).  
 Read more about webhooks in [Crypto Pay Docs](https://help.crypt.bot/crypto-pay-api#webhooks)!  
 Use `CryptoPay.process_webhook_update` function, for processing Crypto Pay requests.  
 Check [webhook example](https://github.com/LulzLoL231/pyCryptoPayAPI/tree/main/examples/webhook-example.py) for more info.
 
 #### CryptoPay.process_webhook_update
-*Coroutine*. Processing webhook request, returns [Update](#typesupdate) object.
+*Coroutine*. Processing webhook request, returns [Update](#schemasupdate) object.
 
 Arguments:
   * **body** (`bytes`) - JSON content from Crypto Pay request in bytes.
@@ -99,7 +99,7 @@ Look full code in the [examples](https://github.com/LulzLoL231/pyCryptoPayAPI/tr
 
 ### get_me
 A simple method for testing your app's authentication token. Requires no parameters. Returns basic information about the app.  
-Returns: [Application](#typesapplication) object.
+Returns: [Application](#schemasapplication) object.
 
 ```python
 cp.get_me()
@@ -109,11 +109,11 @@ cp.get_me()
 Use this method to create a new invoice. Returns object of created invoice.
 
 Arguments:
-* **asset** ([Assets](#typesassets) | `str`) - Currency code. Supported assets: `BTC`, `TON`, `ETH` (only testnet), `USDT`, `USDC`, `BUSD`.
+* **asset** ([Assets](#schemasassets) | `str`) - Currency code. Supported assets: `BTC`, `TON`, `ETH` (only testnet), `USDT`, `USDC`, `BUSD`.
 * **amount** (`float`) - Amount of the invoice in float. For example: `125.50`
 * **description** (`str`) - *Optional*. Description of the invoice. Up to 1024 symbols.
 * **hidden_message** (`str`) - *Optional*. The message will show when the user pays your invoice.
-* **paid_btn_name** ([PaidButtonName](#typespaidbuttonname) | `str`) - *Optional*. Paid button name. This button will be shown when your invoice was paid. Supported names:
+* **paid_btn_name** ([PaidButtonName](#schemaspaidbuttonname) | `str`) - *Optional*. Paid button name. This button will be shown when your invoice was paid. Supported names:
 
   * `viewItem` - View Item
   * `openChannel` - Open Channel
@@ -125,7 +125,7 @@ Arguments:
 * **allow_anonymous** (`bool`) - *Optional*. Allow pay invoice as anonymous. Default is True.
 * **expires_in** (`int`) - *Optional*. You can set the expiration date of the invoice in seconds. Use this period: 1-2678400 seconds.
 
-Returns: [Invoice](#typesinvoice) object of created invoice.
+Returns: [Invoice](#schemasinvoice) object of created invoice.
 
 ```python
 cp.create_invoice(
@@ -141,12 +141,12 @@ Use this method to send coins from your app to the user. Returns object of compl
 
 Arguments:
 * **user_id** (`int`) - Telegram User ID. The user needs to have an account in our bot (send /start if no).
-* **asset** ([Assets](#typesassets)) - Currency code. Supported assets: `BTC`, `TON`, `ETH` (only testnet), `USDT`, `USDC`, `BUSD`.
+* **asset** ([Assets](#schemasassets)) - Currency code. Supported assets: `BTC`, `TON`, `ETH` (only testnet), `USDT`, `USDC`, `BUSD`.
 * **amount** (`float`) - Amount of the transfer in float. For example: `125.50`
 * **spend_id** (`str`) - It is used to make your request idempotent. It's guaranteed that only one of the transfers with the same spend_id will be accepted by Crypto Pay API. This parameter is useful when the transfer should be retried (i.e. request timeout/connection reset/500 HTTP status/etc). You can use a withdrawal id or something. Up to 64 symbols.
 * **comment** (`str`) - *Optional*. The comment of the invoice. The comment will show in the notification about the transfer. Up to 1024 symbols.
 
-Returns: [Transfer](#typestransfer) object of created transfer.
+Returns: [Transfer](#schemastransfer) object of created transfer.
 
 ```python
 cp.transfer(265300852, Assets.USDT, 3.0, 'pCBA226ghd', comment='donate')
@@ -154,27 +154,27 @@ cp.transfer(265300852, Assets.USDT, 3.0, 'pCBA226ghd', comment='donate')
 
 
 ### get_invoice
-Use this method to get invoices of your app. On success, the returns array of [Invoice](#typesinvoice).
+Use this method to get invoices of your app. On success, the returns array of [Invoice](#schemasinvoice).
 
 Arguments:
-* **asset** ([Assets](#typesassets)) - *Optional*. Currency code. Supported assets: `BTC`, `TON`, `ETH` (only testnet), `USDT`, `USDC`, `BUSD`. Default: all assets.
+* **asset** ([Assets](#schemasassets)) - *Optional*. Currency code. Supported assets: `BTC`, `TON`, `ETH` (only testnet), `USDT`, `USDC`, `BUSD`. Default: all assets.
 * **invoice_ids** (`str`) - *Optional*. Invoice IDs separated by comma.
-* **status** ([InvoiceStatus](#typesinvoicestatus)) - *Optional*. Status of invoices. Available statuses: active, paid and expired. Default: all statuses.
+* **status** ([InvoiceStatus](#schemasinvoicestatus)) - *Optional*. Status of invoices. Available statuses: active, paid and expired. Default: all statuses.
 * **offset** (`int`) - *Optional*. Offset needed to return a specific subset of  invoices. Default 0.
 * **count** (`int`) - *Optional*. Number of invoices to return. Default 100, max 1000.
 
-Returns: array of [Invoice](#typesinvoice) objects.
+Returns: array of [Invoice](#schemasinvoice) objects.
 
 ```python
 cp.get_invoices(
-    types.Assets.USDT, status=types.InvoiceStatus.PAID, count=10
+    schemas.Assets.USDT, status=schemas.InvoiceStatus.PAID, count=10
 )
 ```
 
 ### get_balance
 Use this method to get balance of your app. Returns array of assets.
 
-Returns: array of [Balance](#typesbalance) objects.
+Returns: array of [Balance](#schemasbalance) objects.
 
 ```python
 cp.get_balance()
@@ -183,7 +183,7 @@ cp.get_balance()
 ### get_exchange_rates
 Use this method to get exchange rates of supported currencies. Returns array of currencies.
 
-Returns: array of [ExchangeRate](#typesexchangerate) objects.
+Returns: array of [ExchangeRate](#schemasexchangerate) objects.
 
 ```python
 cp.get_exchange_rates()
@@ -192,18 +192,18 @@ cp.get_exchange_rates()
 ### get_currencies
 Use this method to supported currencies. Returns array of currencies.
 
-Returns: array of [Currency](#typescurrency) objects.
+Returns: array of [Currency](#schemascurrency) objects.
 
 ```python
 cp.get_currencies()
 ```
 
-## Constants and types
+## Constants and schemas
 ```python
-from CryptoBotAPI import types
+from CryptoBotAPI import schemas
 ```
 
-#### types.Asset
+#### schemas.Asset
 constant      | value
 ------------- | ------
 `Assets.BTC`  | `BTC`
@@ -213,7 +213,7 @@ constant      | value
 `Assets.USDC` | `USDC`
 `Assets.BUSD` | `BUSD`
 
-#### types.PaidButtonNames
+#### schemas.PaidButtonNames
 constant                       | value
 ------------------------------ | -------------
 `PaidButtonNames.VIEW_ITEM`    | `viewItem`
@@ -221,20 +221,20 @@ constant                       | value
 `PaidButtonNames.OPEN_BOT`     | `openBot`
 `PaidButtonNames.CALLBACK`     | `callback`
 
-#### types.InvoiceStatus
+#### schemas.InvoiceStatus
 constant                | value
 ----------------------- | ---------
 `InvoiceStatus.ACTIVE`  | `active`
 `InvoiceStatus.PAID`    | `paid`
 `InvoiceStatus.EXPIRED` | `expired`
 
-#### types.Invoice
+#### schemas.Invoice
 key                | type
 ------------------ | ------------------------------------
 `invoice_id`       | `int`
-`status`           | [InvoiceStatus](#typesinvoicestatus)
+`status`           | [InvoiceStatus](#schemasinvoicestatus)
 `hash`             | `str`
-`asset`            | [Assets](#typesassets)
+`asset`            | [Assets](#schemasassets)
 `amount`           | `decimal.Decimal`
 `pay_url`          | `str`
 `description`      | `Optional[str]`
@@ -247,34 +247,34 @@ key                | type
 `comment`          | `Optional[str]`
 `hidden_message`   | `Optional[str]`
 `payload`          | `Optional[str]`
-`paid_btn_name`    | `Optional[`[PaidButtonNames](#typespaidbuttonnames)`]`
+`paid_btn_name`    | `Optional[`[PaidButtonNames](#schemaspaidbuttonnames)`]`
 `paid_btn_url`     | `Optional[str]`
 
-#### types.Transfer
+#### schemas.Transfer
 key            | type
 -------------- | -----------------------
 `transfer_id`  | `int`
 `user_id`      | `int`
-`asset`        | [Assets](#typesassets)
+`asset`        | [Assets](#schemasassets)
 `amount`       | `decimal.Decimal`
 `status`       | `Literal['completed']`
 `completed_at` | `datetime.datetime`
 `comment`      | `Optional[str]`
 
-#### types.Application
+#### schemas.Application
 key                               | type
 --------------------------------- | -----
 `app_id`                          | `int`
 `name`                            | `str`
 `payment_processing_bot_username` | `str`
 
-#### types.Balance
+#### schemas.Balance
 key             | type
 --------------- | ------------------
 `currency_code` | `str`
 `available`     | `decimal.Decimal `
 
-#### types.ExchangeRate
+#### schemas.ExchangeRate
 key        | type
 ---------- | -----------------
 `is_valid` | `bool`
@@ -282,7 +282,7 @@ key        | type
 `target`   | `str`
 `rate`     | `decimal.Decimal`
 
-#### types.Currency
+#### schemas.Currency
 key             | type
 --------------- | ------------------
 `is_blockchain` | `bool`
@@ -293,15 +293,15 @@ key             | type
 `url`           | `Optional[str]`
 `decimals`      | `int`
 
-#### types.UpdateType
+#### schemas.UpdateType
 constant                  | value
 ------------------------- | --------------
 `UpdateType.INVOICE_PAID` | `invoice_paid`
 
-#### types.Update
+#### schemas.Update
 key            | type
 -------------- | ------------------------------
 `update_id`    | `int`
-`update_type`  | [UpdateType](#typesupdatetype)
+`update_type`  | [UpdateType](#schemasupdatetype)
 `request_date` | `datetime`
-`payload`      | [Invoice](#typesinvoice)
+`payload`      | [Invoice](#schemasinvoice)

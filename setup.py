@@ -35,17 +35,22 @@ setup(extras_require={"dev": ["attrs==22.1.0; python_version >= '3.5'", 'autopep
       url='https://github.com/LulzLoL231/pyCryptoPayAPI',
       download_url='https://github.com/LulzLoL231/pyCryptoPayAPI/archive/master.zip',
       packages=['CryptoPayAPI'],
-      install_requires=["anyio==3.6.1; python_full_version >= '3.6.2'", "certifi==2022.6.15.1; python_version >= '3.6'", "h11==0.12.0; python_version >= '3.6'", "httpcore==0.15.0; python_version >= '3.7'", 'httpx==0.23.0', "idna==3.3; python_version >= '3.5'", 'pydantic==1.10.2', 'rfc3986[idna2008]==1.5.0', "sniffio==1.3.0; python_version >= '3.7'", "typing-extensions==4.3.0; python_version >= '3.7'"
+      install_requires=["anyio==3.6.2; python_full_version >= '3.6.2'", "certifi==2022.12.7; python_version >= '3.6'", "h11==0.14.0; python_version >= '3.7'", "httpcore==0.16.3; python_version >= '3.7'", 'httpx==0.23.1', "idna==3.4; python_version >= '3.5'", 'pydantic==1.10.2', 'rfc3986[idna2008]==1.5.0', "sniffio==1.3.0; python_version >= '3.7'", "typing-extensions==4.4.0; python_version >= '3.7'"
                         ],
       setup_requires=['wheel'],
       classifiers=[
-    'License :: OSI Approved :: Apache Software License',
+    'License :: OSI Approved :: MIT License',
     'Operating System :: OS Independent',
     'Environment :: Console',
     'Development Status :: 4 - Beta',
     'Programming Language :: Python',
     'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.10'
+    'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
     'Programming Language :: Python :: 3 :: Only',
+    'Topic :: Software Development :: Libraries',
 ]
 )

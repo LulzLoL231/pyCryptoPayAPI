@@ -10,7 +10,7 @@ from typing import Dict, Optional, Union
 
 from httpx import AsyncClient, Timeout
 
-from . import types
+from . import schemas
 from .errors import (
     UnauthorizedError, MethodNotFoundError, UnexpectedError,
     ExpiresInInvalidError, UpdateSignatureError
@@ -100,7 +100,7 @@ class CryptoPay:
                     raw_response=data
                 )
 
-    async def get_me(self) -> types.Application:
+    async def get_me(self) -> schemas.Application:
         '''Returns basic information about an app.
 
         Returns:
@@ -108,9 +108,9 @@ class CryptoPay:
         '''
         self.log.debug('Called!')
         result = await self._callApi('GET', 'getMe')
-        return types.Application(**result)
+        return schemas.Application(**result)
 
-    async def get_balance(self) -> list[types.Balance]:
+    async def get_balance(self) -> list[schemas.Balance]:
         '''Use this method to get a balance of your app.
 
         Returns:
@@ -118,9 +118,9 @@ class CryptoPay:
         '''
         self.log.debug('Called!')
         result = await self._callApi('GET', 'getBalance')
-        return [types.Balance(**i) for i in result]
+        return [schemas.Balance(**i) for i in result]
 
-    async def get_exchange_rates(self) -> list[types.ExchangeRate]:
+    async def get_exchange_rates(self) -> list[schemas.ExchangeRate]:
         '''Use this method to get exchange rates of supported currencies.
 
         Returns:
@@ -128,9 +128,9 @@ class CryptoPay:
         '''
         self.log.debug('Called!')
         result = await self._callApi('GET', 'getExchangeRates')
-        return [types.ExchangeRate(**i) for i in result]
+        return [schemas.ExchangeRate(**i) for i in result]
 
-    async def get_currencies(self) -> list[types.Currency]:
+    async def get_currencies(self) -> list[schemas.Currency]:
         '''Use this method to get a list of supported currencies.
 
         Returns:
@@ -138,19 +138,19 @@ class CryptoPay:
         '''
         self.log.debug('Called!')
         result = await self._callApi('GET', 'getCurrencies')
-        return [types.Currency(**i) for i in result]
+        return [schemas.Currency(**i) for i in result]
 
     async def create_invoice(self,
-                             asset: types.Assets,
+                             asset: schemas.Assets,
                              amount: float,
                              description: Optional[str] = None,
                              hidden_message: Optional[str] = None,
-                             paid_btn_name: Optional[types.PaidButtonNames] = None,
+                             paid_btn_name: Optional[schemas.PaidButtonNames] = None,
                              paid_btn_url: Optional[str] = None,
                              payload: Optional[str] = None,
                              allow_comments: bool = True,
                              allow_anonymous: bool = True,
-                             expires_in: Optional[int] = None) -> types.Invoice:
+                             expires_in: Optional[int] = None) -> schemas.Invoice:
         '''Create a new invoice.
 
         Args:
@@ -187,14 +187,14 @@ class CryptoPay:
         elif expires_in:
             params['expires_in'] = expires_in
         result = await self._callApi('POST', 'createInvoice', params)
-        return types.Invoice(**result)
+        return schemas.Invoice(**result)
 
     async def get_invoices(self,
-                           asset: Optional[types.Assets] = None,
+                           asset: Optional[schemas.Assets] = None,
                            invoice_ids: Optional[str] = None,
-                           status: Optional[types.InvoiceStatus] = None,
+                           status: Optional[schemas.InvoiceStatus] = None,
                            offset: int = 0,
-                           count: int = 100) -> list[types.Invoice]:
+                           count: int = 100) -> list[schemas.Invoice]:
         '''Use this method to get invoices of your app.
 
         Args:
@@ -219,15 +219,15 @@ class CryptoPay:
         elif status:
             params['status'] = str(status)
         result = await self._callApi('GET', 'getInvoices', params)
-        return [types.Invoice(**i) for i in result['items']]
+        return [schemas.Invoice(**i) for i in result['items']]
 
     async def transfer(self,
                        user_id: int,
-                       asset: types.Assets,
+                       asset: schemas.Assets,
                        amount: float,
                        spend_id: str,
                        comment: Optional[str] = None,
-                       disable_send_notification: Optional[bool] = False) -> types.Transfer:
+                       disable_send_notification: Optional[bool] = False) -> schemas.Transfer:
         '''Use this method to send coins from your app's balance to a user.
 
         Args:
@@ -253,11 +253,11 @@ class CryptoPay:
         elif disable_send_notification:
             params['disable_send_notification'] = 'true'
         result = await self._callApi('POST', 'transfer', params)
-        return types.Transfer(**result)
+        return schemas.Transfer(**result)
 
     async def process_webhook_update(self,
                                      body: bytes,
-                                     headers: dict) -> types.Update:
+                                     headers: dict) -> schemas.Update:
         '''Process webhook update.
 
         Args:
@@ -268,7 +268,7 @@ class CryptoPay:
             types.Update: Webhook update.
         '''
         self.log.debug(f'Called with args: ({body}, {headers})')  # type: ignore
-        update = types.Update(**loads(body), raw_body=body)
+        update = schemas.Update(**loads(body), raw_body=body)
         sign = headers.get('crypto-pay-api-signature', '')
         if not sign:
             raise UpdateSignatureError(

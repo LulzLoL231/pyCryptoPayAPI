@@ -7,7 +7,7 @@ from os import environ
 from asyncio import run
 
 from CryptoPayAPI import CryptoPay
-from CryptoPayAPI.types import Assets, PaidButtonNames, InvoiceStatus
+from CryptoPayAPI.schemas import Assets, PaidButtonNames, InvoiceStatus
 
 
 TOKEN = environ.get('CRYPTOPAY_API_TOKEN', '')
