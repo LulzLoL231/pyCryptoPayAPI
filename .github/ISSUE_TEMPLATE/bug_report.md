@@ -24,7 +24,7 @@ If applicable, add screenshots to help explain your problem.
 
 **Desktop (please complete the following information):**
  - OS: [e.g. iOS]
- - pyCryptoBotAPI Version [e.g. 0.1]
+ - pyCryptoPayAPI Version [e.g. 0.1]
 
 **Additional context**
 Add any other context about the problem here.

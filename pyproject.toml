@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "pyCryptoPay-SDK"
+version = "1.5.0"
+description = "Python API wrapper for CryptoPay API"
+authors = ["Maxim Mosin <max@mosin.pw>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/LulzLoL231/pyCryptoPayAPI/"
+repository = "https://github.com/LulzLoL231/pyCryptoPayAPI"
+keywords= ["cryptopay", "crypto"]
+classifiers = [
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Operating System :: OS Independent",
+    "Development Status :: 4 - Beta",
+    "Framework :: AsyncIO"
+]
+packages = [
+    { include = "CryptoPayAPI" }
+]
+
+[tool.poetry.dependencies]
+python = ">=3.8.1"
+httpx = "^0.23.1"
+pydantic = "^1.10.2"
+
+[tool.poetry.dev-dependencies]
+mypy = "^0.991"
+flake8 = "^6.0.0"
+autopep8 = "^2.0.1"
+pytest = "^7.2.0"
+pytest-asyncio = "^0.20.3"
+fastapi = "^0.88.0"
+uvicorn = "^0.20.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
