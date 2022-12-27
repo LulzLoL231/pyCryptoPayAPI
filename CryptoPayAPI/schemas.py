@@ -71,6 +71,8 @@ class Invoice(BaseModel):
     payload: Optional[str]
     paid_btn_name: Optional[PaidButtonNames]
     paid_btn_url: Optional[str]
+    fee: Optional[Decimal]
+    usd_rate: Optional[Decimal]
 
 
 class Transfer(BaseModel):

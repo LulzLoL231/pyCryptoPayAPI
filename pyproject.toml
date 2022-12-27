@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pyCryptoPay-SDK"
-version = "1.5.4"
+version = "1.6"
 description = "Python API wrapper for CryptoPay API"
 authors = ["Maxim Mosin <max@mosin.pw>"]
 license = "MIT"
