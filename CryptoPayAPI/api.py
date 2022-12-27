@@ -13,7 +13,7 @@ from httpx import AsyncClient, Timeout
 from . import schemas
 from .errors import (
     UnauthorizedError, MethodNotFoundError, UnexpectedError,
-    ExpiresInInvalidError, UpdateSignatureError
+    ExpiresInInvalidError, UpdateSignatureError, MethodDisabledError
 )
 
 
@@ -81,24 +81,26 @@ class CryptoPay:
                     f'Method {api_method} not found!'
                 )
             elif resp.status_code == 400:
-                data = await resp.json()
+                data = resp.json()
                 err = data['error']['name']
                 if err == 'EXPIRES_IN_INVALID':
                     raise ExpiresInInvalidError(
                         f'Expires "{query["expires_in"]}" is invalid!',
                         raw_response=data
                     )
-                else:
-                    raise UnexpectedError(
-                        f'[{data["error"]["code"]}] {data["error"]["name"]}',
+            elif resp.status_code == 403:
+                data = resp.json()
+                err = data['error']['name']
+                if err == 'METHOD_DISABLED':
+                    raise MethodDisabledError(
+                        f'Method "{api_method}" is disabled!',
                         raw_response=data
                     )
-            else:
-                data = await resp.json()
-                raise UnexpectedError(
-                    f'[{data["error"]["code"]}] {data["error"]["name"]}',
-                    raw_response=data
-                )
+            data = resp.json()
+            raise UnexpectedError(
+                f'[{data["error"]["code"]}] {data["error"]["name"]}',
+                raw_response=data
+            )
 
     async def get_me(self) -> schemas.Application:
         '''Returns basic information about an app.

@@ -34,3 +34,7 @@ class ExpiresInInvalidError(BaseError):
 
 class UpdateSignatureError(BaseError):
     pass
+
+
+class MethodDisabledError(BaseError):
+    pass
