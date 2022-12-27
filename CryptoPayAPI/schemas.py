@@ -129,8 +129,8 @@ class Update(BaseModel):
             bool: Is signature verified?
         '''
         log.debug(f'Called with args: ({api_key}, {sign})')
-        secret = sha256(api_key.encode()).hexdigest()
-        hmac = HMAC(secret.encode(), self.raw_body, digestmod=sha256)
+        secret = sha256(api_key.encode()).digest()
+        hmac = HMAC(secret, self.raw_body, digestmod=sha256)
         body_sign = hmac.hexdigest()
         log.debug(f'Calculated hash: {body_sign}')
         return body_sign == sign
