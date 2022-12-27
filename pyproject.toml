@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pyCryptoPay-SDK"
-version = "1.6"
+version = "1.6.1"
 description = "Python API wrapper for CryptoPay API"
 authors = ["Maxim Mosin <max@mosin.pw>"]
 license = "MIT"
@@ -11,7 +11,7 @@ keywords= ["cryptopay", "crypto"]
 classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Operating System :: OS Independent",
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Framework :: AsyncIO"
 ]
 packages = [
@@ -31,7 +31,26 @@ pytest = "^7.2.0"
 pytest-asyncio = "^0.20.3"
 fastapi = "^0.88.0"
 uvicorn = "^0.20.0"
+bumpver = "^2022.1120"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.bumpver]
+current_version = "1.6.1"
+version_pattern = "MAJOR.MINOR.PATCH"
+commit_message = "Bump version {old_version} -> {new_version}"
+commit = true
+tag = true
+push = false
+
+[tool.bumpver.file_patterns]
+"pyproject.toml" = [
+    'current_version = "{version}"',
+    'version = "{version}"',
+]
+"CryptoPayAPI/__init__.py" = [
+    "__version__ = '{version}'",
+]
+
