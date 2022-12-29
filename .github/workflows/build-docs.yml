@@ -2,6 +2,8 @@ name: Build Documentation
 on:
   release:
     types: [published]
+  push:
+    branches: [ master ]
 
 permissions:
   contents: write
