@@ -25,4 +25,4 @@ jobs:
       - name: Install dependencies
         run: poetry install
       - name: Build and publish documentation
-        run: mkdocs gh-deploy --force
+        run: poetry run mkdocs gh-deploy --force
