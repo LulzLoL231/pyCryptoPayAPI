@@ -15,7 +15,7 @@ classifiers = [
     "Framework :: AsyncIO"
 ]
 packages = [
-    { include = "src/CryptoPayAPI" }
+    { include = "CryptoPayAPI", from = "src" }
 ]
 
 [tool.poetry.dependencies]
