@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pyCryptoPay-SDK"
-version = "1.6.1"
+version = "1.6.2"
 description = "Python API wrapper for CryptoPay API"
 authors = ["Maxim Mosin <max@mosin.pw>"]
 license = "MIT"
@@ -48,7 +48,7 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.bumpver]
-current_version = "1.6.1"
+current_version = "1.6.2"
 version_pattern = "MAJOR.MINOR.PATCH"
 commit_message = "Bump version {old_version} -> {new_version}"
 commit = true
