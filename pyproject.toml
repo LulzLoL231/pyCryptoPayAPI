@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pyCryptoPay-SDK"
-version = "1.6.1"
+version = "1.6.2"
 description = "Python API wrapper for CryptoPay API"
 authors = ["Maxim Mosin <max@mosin.pw>"]
 license = "MIT"
@@ -15,7 +15,7 @@ classifiers = [
     "Framework :: AsyncIO"
 ]
 packages = [
-    { include = "CryptoPayAPI" }
+    { include = "CryptoPayAPI", from = "src" }
 ]
 
 [tool.poetry.dependencies]
@@ -32,13 +32,23 @@ pytest-asyncio = "^0.20.3"
 fastapi = "^0.88.0"
 uvicorn = "^0.20.0"
 bumpver = "^2022.1120"
+mkdocs-material = "^8.5.11"
+mkdocs-git-revision-date-localized-plugin = "^1.1.0"
+mkdocs-git-committers-plugin-2 = "^1.1.1"
+mkdocs-git-authors-plugin = "^0.7.0"
+mkdocstrings = {extras = ["python"], version = "^0.19.1"}
+mkdocs-glightbox = "^0.3.1"
+mkdocs-literate-nav = "^0.5.0"
+mkdocs-gen-files = "^0.4.0"
+mkdocs-section-index = "^0.3.4"
+mkdocs-static-i18n = "^0.53"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.bumpver]
-current_version = "1.6.1"
+current_version = "1.6.2"
 version_pattern = "MAJOR.MINOR.PATCH"
 commit_message = "Bump version {old_version} -> {new_version}"
 commit = true
@@ -50,7 +60,7 @@ push = false
     'current_version = "{version}"',
     'version = "{version}"',
 ]
-"CryptoPayAPI/__init__.py" = [
+"src/CryptoPayAPI/__init__.py" = [
     "__version__ = '{version}'",
 ]
 
