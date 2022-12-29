@@ -8,7 +8,7 @@ This library help you to work with **Crypto Pay** via [Crypto Pay API](https://h
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/LulzLoL231/pyCryptoPayAPI)](https://github.com/LulzLoL231/pyCryptoPayAPI/releases/latest) [![CodeQL](https://github.com/LulzLoL231/pyCryptoPayAPI/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/LulzLoL231/pyCryptoPayAPI/actions/workflows/codeql-analysis.yml) [![Library test](https://github.com/LulzLoL231/pyCryptoPayAPI/actions/workflows/lib-test.yml/badge.svg)](https://github.com/LulzLoL231/pyCryptoPayAPI/actions/workflows/lib-test.yml)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pycryptopay-sdk)  
 Documentation available on [English language](https://lulzlol231.github.io/pyCryptoPayAPI/en)  
-Документация доступна на [Русском языке](https://lulzlol231.github.io/pyCryptoPayAPI/en)
+Документация доступна на [Русском языке](https://lulzlol231.github.io/pyCryptoPayAPI/ru)
 
 ## Install
 Via pip:
