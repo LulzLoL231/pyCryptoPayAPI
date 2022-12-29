@@ -7,6 +7,7 @@ license = "MIT"
 readme = "README.md"
 homepage = "https://github.com/LulzLoL231/pyCryptoPayAPI/"
 repository = "https://github.com/LulzLoL231/pyCryptoPayAPI"
+documentation = "https://lulzlol231.github.io/pyCryptoPayAPI"
 keywords= ["cryptopay", "crypto"]
 classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
@@ -42,6 +43,7 @@ mkdocs-literate-nav = "^0.5.0"
 mkdocs-gen-files = "^0.4.0"
 mkdocs-section-index = "^0.3.4"
 mkdocs-static-i18n = "^0.53"
+lxml = "^4.9.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
