@@ -1,0 +1,108 @@
+site_name: pyCryptoPay-SDK Documentation
+repo_url: https://github.com/LulzLoL231/pyCryptoPayAPI
+repo_name: LulzLoL231/pyCryptoPayAPI
+edit_uri: edit/master/docs/
+copyright: Copyright &copy; 2022 Maxim Mosin
+
+nav:
+  - Home: 'index.md'
+  - Install: 'install.md'
+  - 'Get API token': 'get_token.md'
+  - Examples:
+    - 'Get application': 'examples/get_me.md'
+    - 'Use testnet': 'examples/testnet_usage.md'
+    - 'Transfer crypto': 'examples/transfer_usage.md'
+    - Webhook: 'examples/webhook_example.md'
+  - 'Issue tracker': 'https://github.com/LulzLoL231/pyCryptoPayAPI/issues'
+  - API: 'API/'
+  - 'CryptoPay API Docs': 'https://help.crypt.bot/crypto-pay-api'
+
+theme:
+  name: material
+  icon:
+    repo: fontawesome/brands/git-alt
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.top
+    - content.code.annotate
+    - toc.integrate
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+plugins:
+  - gen-files:
+      scripts:
+      - docs/gen_ref_pages.py
+  - literate-nav:
+      nav_file: SUMMARY.md
+  - git-committers:
+      repository: squidfunk/mkdocs-material
+  - git-authors
+  - search
+  - mkdocstrings
+  - glightbox
+  - i18n:
+      default_language: en
+      docs_structure: folder
+      languages:
+        en:
+          name: English
+          build: true
+          site_name: pyCryptoPay-SDK Documentation
+        ru:
+          name: Русский
+          build: true
+          site_name: Документация pyCryptoPay-SDK
+      nav_translations:
+        ru:
+          - Home: 'Главная'
+          - Install: 'Установка'
+          - 'Get API token': 'Получение API токена'
+          - Examples: 'Примеры'
+          - 'Get application': 'Получение объекта приложения'
+          - 'Use testnet': 'Использование тестовой сети'
+          - 'Transfer crypto': 'Отправка криптовалюты'
+          - Webhook: 'Webhook'
+          - 'Issue tracker': 'Issue трекер'
+
+  - git-revision-date-localized:
+      enable_creation_date: true
+      fallback_to_build_date: true
+  - section-index
+
+extra:
+  social:
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/pycryptopay-sdk/
+      name: Project on PYPI
+    - icon: fontawesome/brands/github
+      link: https://github.com/LulzLoL231
+      name: Author GitHub
+  alternate:
+    - name: English
+      link: ./en/
+      lang: en
+    - name: Русский
+      link: ./ru/
+      lang: ru
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - md_in_html

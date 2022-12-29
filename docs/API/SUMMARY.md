@@ -1,0 +1,5 @@
+* [CryptoPayAPI](CryptoPayAPI/index.md)
+    * [api](CryptoPayAPI/api.md)
+    * [errors](CryptoPayAPI/errors.md)
+    * [schemas](CryptoPayAPI/schemas.md)
+    * [types](CryptoPayAPI/types.md)
