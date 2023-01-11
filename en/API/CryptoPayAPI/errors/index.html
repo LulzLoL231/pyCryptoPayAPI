@@ -252,6 +252,41 @@
     src.CryptoPayAPI.errors
   </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.errors.BaseError">
+    BaseError
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.errors.ExpiresInInvalidError">
+    ExpiresInInvalidError
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.errors.MethodDisabledError">
+    MethodDisabledError
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.errors.MethodNotFoundError">
+    MethodNotFoundError
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.errors.UnauthorizedError">
+    UnauthorizedError
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.errors.UnexpectedError">
+    UnexpectedError
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.errors.UpdateSignatureError">
+    UpdateSignatureError
+  </a>
+</li>
 </ul>
 </nav>
 </li>
@@ -302,6 +337,41 @@
     src.CryptoPayAPI.errors
   </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.errors.BaseError">
+    BaseError
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.errors.ExpiresInInvalidError">
+    ExpiresInInvalidError
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.errors.MethodDisabledError">
+    MethodDisabledError
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.errors.MethodNotFoundError">
+    MethodNotFoundError
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.errors.UnauthorizedError">
+    UnauthorizedError
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.errors.UnexpectedError">
+    UnexpectedError
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.errors.UpdateSignatureError">
+    UpdateSignatureError
+  </a>
+</li>
 </ul>
 </nav>
 </div>
@@ -317,6 +387,201 @@
 <a id="src.CryptoPayAPI.errors"></a>
 <div class="doc doc-contents first">
 <div class="doc doc-children">
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="src.CryptoPayAPI.errors.BaseError">
+<code>BaseError</code>
+</h2>
+<div class="doc doc-contents">
+<p class="doc doc-class-bases">
+        Bases: <code>Exception</code></p>
+<p>Base error class</p>
+<p><strong>Attributes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>raw_response</code></td>
+<td>
+<code>dict</code>
+</td>
+<td><p>RAW response from CryptoPay API.</p></td>
+</tr>
+<tr>
+<td><code>raw_headers</code></td>
+<td>
+<code>dict</code>
+</td>
+<td><p>RAW headers from CryptoPay API response.</p></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>src/CryptoPayAPI/errors.py</code></summary>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">BaseError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">'''Base error class</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        raw_response (dict, optional): RAW response from CryptoPay API.</span>
+<span class="sd">        raw_headers (dict, optional): RAW headers from CryptoPay API response.</span>
+<span class="sd">    '''</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
+                 <span class="n">raw_response</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">raw_headers</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">raw_response</span> <span class="o">=</span> <span class="n">raw_response</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">raw_headers</span> <span class="o">=</span> <span class="n">raw_headers</span>
+</code></pre></div></td></tr></table></div>
+</details>
+<div class="doc doc-children">
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="src.CryptoPayAPI.errors.ExpiresInInvalidError">
+<code>ExpiresInInvalidError</code>
+</h2>
+<div class="doc doc-contents">
+<p class="doc doc-class-bases">
+        Bases: <code><a class="autorefs autorefs-internal" title="src.CryptoPayAPI.errors.BaseError" href="../../../../API/CryptoPayAPI/errors/#src.CryptoPayAPI.errors.BaseError">BaseError</a></code></p>
+<p>Value of <code>expires_in</code> is invalid.</p>
+<details class="quote">
+<summary>Source code in <code>src/CryptoPayAPI/errors.py</code></summary>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ExpiresInInvalidError</span><span class="p">(</span><span class="n">BaseError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">'''Value of `expires_in` is invalid.</span>
+<span class="sd">    '''</span>
+    <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="src.CryptoPayAPI.errors.MethodDisabledError">
+<code>MethodDisabledError</code>
+</h2>
+<div class="doc doc-contents">
+<p class="doc doc-class-bases">
+        Bases: <code><a class="autorefs autorefs-internal" title="src.CryptoPayAPI.errors.BaseError" href="../../../../API/CryptoPayAPI/errors/#src.CryptoPayAPI.errors.BaseError">BaseError</a></code></p>
+<p>Requested method is disabled. Check bot settings.</p>
+<details class="quote">
+<summary>Source code in <code>src/CryptoPayAPI/errors.py</code></summary>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">MethodDisabledError</span><span class="p">(</span><span class="n">BaseError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">'''Requested method is disabled. Check bot settings.</span>
+<span class="sd">    '''</span>
+    <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="src.CryptoPayAPI.errors.MethodNotFoundError">
+<code>MethodNotFoundError</code>
+</h2>
+<div class="doc doc-contents">
+<p class="doc doc-class-bases">
+        Bases: <code><a class="autorefs autorefs-internal" title="src.CryptoPayAPI.errors.BaseError" href="../../../../API/CryptoPayAPI/errors/#src.CryptoPayAPI.errors.BaseError">BaseError</a></code></p>
+<p>Requested method is not found.</p>
+<details class="quote">
+<summary>Source code in <code>src/CryptoPayAPI/errors.py</code></summary>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">MethodNotFoundError</span><span class="p">(</span><span class="n">BaseError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">'''Requested method is not found.</span>
+<span class="sd">    '''</span>
+    <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="src.CryptoPayAPI.errors.UnauthorizedError">
+<code>UnauthorizedError</code>
+</h2>
+<div class="doc doc-contents">
+<p class="doc doc-class-bases">
+        Bases: <code><a class="autorefs autorefs-internal" title="src.CryptoPayAPI.errors.BaseError" href="../../../../API/CryptoPayAPI/errors/#src.CryptoPayAPI.errors.BaseError">BaseError</a></code></p>
+<p>Authorization on CryptoPay API is failed, maybe incorect/expired API token.</p>
+<details class="quote">
+<summary>Source code in <code>src/CryptoPayAPI/errors.py</code></summary>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">UnauthorizedError</span><span class="p">(</span><span class="n">BaseError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">'''Authorization on CryptoPay API is failed, maybe incorect/expired API token.</span>
+<span class="sd">    '''</span>
+    <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="src.CryptoPayAPI.errors.UnexpectedError">
+<code>UnexpectedError</code>
+</h2>
+<div class="doc doc-contents">
+<p class="doc doc-class-bases">
+        Bases: <code><a class="autorefs autorefs-internal" title="src.CryptoPayAPI.errors.BaseError" href="../../../../API/CryptoPayAPI/errors/#src.CryptoPayAPI.errors.BaseError">BaseError</a></code></p>
+<p>Unexpected API error.</p>
+<details class="quote">
+<summary>Source code in <code>src/CryptoPayAPI/errors.py</code></summary>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">UnexpectedError</span><span class="p">(</span><span class="n">BaseError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">'''Unexpected API error.</span>
+<span class="sd">    '''</span>
+    <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="src.CryptoPayAPI.errors.UpdateSignatureError">
+<code>UpdateSignatureError</code>
+</h2>
+<div class="doc doc-contents">
+<p class="doc doc-class-bases">
+        Bases: <code><a class="autorefs autorefs-internal" title="src.CryptoPayAPI.errors.BaseError" href="../../../../API/CryptoPayAPI/errors/#src.CryptoPayAPI.errors.BaseError">BaseError</a></code></p>
+<p>Webhook signature validation error.</p>
+<details class="quote">
+<summary>Source code in <code>src/CryptoPayAPI/errors.py</code></summary>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">UpdateSignatureError</span><span class="p">(</span><span class="n">BaseError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">'''Webhook signature validation error.</span>
+<span class="sd">    '''</span>
+    <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+</details>
+</div>
+</div>
 </div>
 </div>
 </div>
