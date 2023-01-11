@@ -696,14 +696,22 @@
 <span class="normal">284</span>
 <span class="normal">285</span>
 <span class="normal">286</span>
-<span class="normal">287</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">CryptoPay</span><span class="p">:</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">CryptoPay</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">'''CryptoPay payment system.</span>
 <span class="sd">    '''</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">testnet</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">testnet</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">client</span><span class="p">:</span> <span class="n">AsyncClient</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">'''</span>
 <span class="sd">        Args:</span>
 <span class="sd">            api_key (str): CryptoPay API token.</span>
 <span class="sd">            testnet (bool): Use Testnet? Defaults to False.</span>
+<span class="sd">            client (AsyncClient, optional): Using custom AsyncClient. Defaults is None.</span>
 <span class="sd">        '''</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">timeout_sec</span> <span class="o">=</span> <span class="mi">5</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">'CryptoPay'</span><span class="p">)</span>
@@ -716,7 +724,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="n">TESTHOST</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="n">MAINHOST</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">AsyncClient</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">client</span> <span class="ow">or</span> <span class="n">AsyncClient</span><span class="p">(</span>
             <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">base_url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span><span class="p">,</span>
             <span class="n">timeout</span><span class="o">=</span><span class="n">Timeout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">timeout_sec</span><span class="p">)</span>
         <span class="p">)</span>
@@ -781,7 +789,7 @@
 <span class="w">        </span><span class="sd">'''Returns basic information about an app.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            types.Application: Basic information about an app.</span>
+<span class="sd">            schemas.Application: Basic information about an app.</span>
 <span class="sd">        '''</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">'Called!'</span><span class="p">)</span>
         <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callApi</span><span class="p">(</span><span class="s1">'GET'</span><span class="p">,</span> <span class="s1">'getMe'</span><span class="p">)</span>
@@ -791,7 +799,7 @@
 <span class="w">        </span><span class="sd">'''Use this method to get a balance of your app.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[types.Balance]: Array of assets.</span>
+<span class="sd">            List[schemas.Balance]: Array of assets.</span>
 <span class="sd">        '''</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">'Called!'</span><span class="p">)</span>
         <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callApi</span><span class="p">(</span><span class="s1">'GET'</span><span class="p">,</span> <span class="s1">'getBalance'</span><span class="p">)</span>
@@ -801,7 +809,7 @@
 <span class="w">        </span><span class="sd">'''Use this method to get exchange rates of supported currencies.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[types.ExchangeRate]: Array of currencies.</span>
+<span class="sd">            List[schemas.ExchangeRate]: Array of currencies.</span>
 <span class="sd">        '''</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">'Called!'</span><span class="p">)</span>
         <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callApi</span><span class="p">(</span><span class="s1">'GET'</span><span class="p">,</span> <span class="s1">'getExchangeRates'</span><span class="p">)</span>
@@ -811,7 +819,7 @@
 <span class="w">        </span><span class="sd">'''Use this method to get a list of supported currencies.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[types.Currency]: Array of currencies.</span>
+<span class="sd">            List[schemas.Currency]: Array of currencies.</span>
 <span class="sd">        '''</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">'Called!'</span><span class="p">)</span>
         <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callApi</span><span class="p">(</span><span class="s1">'GET'</span><span class="p">,</span> <span class="s1">'getCurrencies'</span><span class="p">)</span>
@@ -831,11 +839,11 @@
 <span class="w">        </span><span class="sd">'''Create a new invoice.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            asset (types.Assets): Currency.</span>
+<span class="sd">            asset (schemas.Assets): Currency.</span>
 <span class="sd">            amount (float): Amount of invoice in float.</span>
 <span class="sd">            description (Optional[str]): Description for the invoice. User will see this description when they pay the invoice. Up to 1024 characters. Defaults to None.</span>
 <span class="sd">            hidden_message (Optional[str]): Text of the message that will be shown to a user after the invoice is paid. Up to 2048 characters. Defaults to None.</span>
-<span class="sd">            paid_btn_name (Optional[types.PaidButtonNames]): Name of the button that will be shown to a user after the invoice is paid. Defaults to None.</span>
+<span class="sd">            paid_btn_name (Optional[schemas.PaidButtonNames]): Name of the button that will be shown to a user after the invoice is paid. Defaults to None.</span>
 <span class="sd">            paid_btn_url (Optional[str]): Required if paid_btn_name is used. URL to be opened when the button is pressed. You can set any success link (for example, a link to your bot). Starts with https or http. Defaults to None.</span>
 <span class="sd">            payload (Optional[str]): Any data you want to attach to the invoice (for example, user ID, payment ID, ect). Up to 4kb. Defaults to None.</span>
 <span class="sd">            allow_comments (bool): Allow a user to add a comment to the payment. Defaults to True.</span>
@@ -843,7 +851,7 @@
 <span class="sd">            expires_in (Optional[int]): You can set a payment time limit for the invoice in seconds. Values between 1-2678400 are accepted. Defaults to None.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            types.Invoice: Object of the created invoice.</span>
+<span class="sd">            schemas.Invoice: Object of the created invoice.</span>
 <span class="sd">        '''</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Called with args (</span><span class="si">{</span><span class="n">asset</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">amount</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">description</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">hidden_message</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">paid_btn_name</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">paid_btn_url</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">payload</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">allow_comments</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">allow_anonymous</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">expires_in</span><span class="si">}</span><span class="s1">)'</span><span class="p">)</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
@@ -875,14 +883,14 @@
 <span class="w">        </span><span class="sd">'''Use this method to get invoices of your app.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            asset (Optional[types.Assets]): Currency codes separated by comma. Defaults to all assets.</span>
+<span class="sd">            asset (Optional[schemas.Assets]): Currency codes separated by comma. Defaults to all assets.</span>
 <span class="sd">            invoice_ids (Optional[str]): Invoice IDs separated by comma. Defaults to None.</span>
-<span class="sd">            status (Optional[types.InvoiceStatus]): Status of invoices to be returned. Defaults to all statuses.</span>
+<span class="sd">            status (Optional[schemas.InvoiceStatus]): Status of invoices to be returned. Defaults to all statuses.</span>
 <span class="sd">            offset (int): Offset needed to return a specific subset of invoices. Defaults to 0.</span>
 <span class="sd">            count (int): Number of invoices to be returned. Values between 1-1000 are accepted. Defaults to 100.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            List[types.Invoice]: Array of invoices.</span>
+<span class="sd">            List[schemas.Invoice]: Array of invoices.</span>
 <span class="sd">        '''</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Called with args (</span><span class="si">{</span><span class="n">asset</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">invoice_ids</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">offset</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s1">)'</span><span class="p">)</span>
         <span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
@@ -909,14 +917,14 @@
 
 <span class="sd">        Args:</span>
 <span class="sd">            user_id (int): Telegram user_id.</span>
-<span class="sd">            asset (types.Assets): Currency.</span>
+<span class="sd">            asset (schemas.Assets): Currency.</span>
 <span class="sd">            amount (float): Amount of the transfer in float. The minimum and maximum amounts for each of the support asset roughly correspond to the limit of 0.01-25000 USD. Use `get_exchange_rates` to convert amounts.</span>
 <span class="sd">            spend_id (str): Unique ID to make your request idempotent and ensure that only one of the transfers with the same `spend_id` will be accepted by Crypto Pay API. This parameter is useful when the transfer should be retried (i.e. request timeout, connection reset, 500 HTTP status, etc). It can be some unique withdrawal identifier for example. Up to 64 symbols.</span>
 <span class="sd">            comment (Optional[str], optional): Comment for the transfer. Users will see this comment when they receive a notification about the transfer. Up to 1024 symbols. Defaults to None.</span>
 <span class="sd">            disable_send_notification (Optional[bool], optional): Pass `True` if the user should not receive a notification about the transfer. Defaults to False.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            types.Transfer: Object of completed `transfer`.</span>
+<span class="sd">            schemas.Transfer: Object of completed `transfer`.</span>
 <span class="sd">        '''</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Called with args (</span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">asset</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">amount</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">spend_id</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">comment</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">disable_send_notification</span><span class="si">}</span><span class="s1">)'</span><span class="p">)</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
@@ -942,7 +950,7 @@
 <span class="sd">            headers (dict): Update request headers.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            types.Update: Webhook update.</span>
+<span class="sd">            schemas.Update: Webhook update.</span>
 <span class="sd">        '''</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Called with args: (</span><span class="si">{</span><span class="n">body</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">headers</span><span class="si">}</span><span class="s1">)'</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
         <span class="n">update</span> <span class="o">=</span> <span class="n">schemas</span><span class="o">.</span><span class="n">Update</span><span class="p">(</span><span class="o">**</span><span class="n">loads</span><span class="p">(</span><span class="n">body</span><span class="p">),</span> <span class="n">raw_body</span><span class="o">=</span><span class="n">body</span><span class="p">)</span>
@@ -965,7 +973,7 @@
 <div class="doc doc-children">
 <div class="doc doc-object doc-function">
 <h3 class="doc doc-heading" id="src.CryptoPayAPI.api.CryptoPay.__init__">
-<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">testnet</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">testnet</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 </h3>
 <div class="doc doc-contents">
 <p><strong>Parameters:</strong></p>
@@ -999,6 +1007,16 @@
 <code>False</code>
 </td>
 </tr>
+<tr>
+<td><code>client</code></td>
+<td>
+<code><span title="httpx.AsyncClient">AsyncClient</span></code>
+</td>
+<td><p>Using custom AsyncClient. Defaults is None.</p></td>
+<td>
+<code>None</code>
+</td>
+</tr>
 </tbody>
 </table>
 <details class="quote">
@@ -1023,11 +1041,19 @@
 <span class="normal">44</span>
 <span class="normal">45</span>
 <span class="normal">46</span>
-<span class="normal">47</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">testnet</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">testnet</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">client</span><span class="p">:</span> <span class="n">AsyncClient</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">'''</span>
 <span class="sd">    Args:</span>
 <span class="sd">        api_key (str): CryptoPay API token.</span>
 <span class="sd">        testnet (bool): Use Testnet? Defaults to False.</span>
+<span class="sd">        client (AsyncClient, optional): Using custom AsyncClient. Defaults is None.</span>
 <span class="sd">    '''</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">timeout_sec</span> <span class="o">=</span> <span class="mi">5</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">'CryptoPay'</span><span class="p">)</span>
@@ -1040,7 +1066,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="n">TESTHOST</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="n">MAINHOST</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">AsyncClient</span><span class="p">(</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">client</span> <span class="ow">or</span> <span class="n">AsyncClient</span><span class="p">(</span>
         <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span> <span class="n">base_url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">endpoint</span><span class="p">,</span>
         <span class="n">timeout</span><span class="o">=</span><span class="n">Timeout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">timeout_sec</span><span class="p">)</span>
     <span class="p">)</span>
@@ -1071,7 +1097,7 @@
 <tr>
 <td><code>asset</code></td>
 <td>
-<code><span title="src.CryptoPayAPI.types">types</span>.<a class="autorefs autorefs-internal" title="src.CryptoPayAPI.types.Assets" href="schemas/#src.CryptoPayAPI.schemas.Assets">Assets</a></code>
+<code><a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas" href="schemas/#src.CryptoPayAPI.schemas">schemas</a>.<a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas.Assets" href="schemas/#src.CryptoPayAPI.schemas.Assets">Assets</a></code>
 </td>
 <td><p>Currency.</p></td>
 <td>
@@ -1111,7 +1137,7 @@
 <tr>
 <td><code>paid_btn_name</code></td>
 <td>
-<code><span title="typing.Optional">Optional</span>[<span title="src.CryptoPayAPI.types">types</span>.<a class="autorefs autorefs-internal" title="src.CryptoPayAPI.types.PaidButtonNames" href="schemas/#src.CryptoPayAPI.schemas.PaidButtonNames">PaidButtonNames</a>]</code>
+<code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas" href="schemas/#src.CryptoPayAPI.schemas">schemas</a>.<a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas.PaidButtonNames" href="schemas/#src.CryptoPayAPI.schemas.PaidButtonNames">PaidButtonNames</a>]</code>
 </td>
 <td><p>Name of the button that will be shown to a user after the invoice is paid. Defaults to None.</p></td>
 <td>
@@ -1183,17 +1209,13 @@
 <td>
 <code><a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas" href="schemas/#src.CryptoPayAPI.schemas">schemas</a>.<a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas.Invoice" href="schemas/#src.CryptoPayAPI.schemas.Invoice">Invoice</a></code>
 </td>
-<td><p>types.Invoice: Object of the created invoice.</p></td>
+<td><p>schemas.Invoice: Object of the created invoice.</p></td>
 </tr>
 </tbody>
 </table>
 <details class="quote">
 <summary>Source code in <code>src/CryptoPayAPI/api.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">145</span>
-<span class="normal">146</span>
-<span class="normal">147</span>
-<span class="normal">148</span>
-<span class="normal">149</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">149</span>
 <span class="normal">150</span>
 <span class="normal">151</span>
 <span class="normal">152</span>
@@ -1236,7 +1258,11 @@
 <span class="normal">189</span>
 <span class="normal">190</span>
 <span class="normal">191</span>
-<span class="normal">192</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">create_invoice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">create_invoice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                          <span class="n">asset</span><span class="p">:</span> <span class="n">schemas</span><span class="o">.</span><span class="n">Assets</span><span class="p">,</span>
                          <span class="n">amount</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                          <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1250,11 +1276,11 @@
 <span class="w">    </span><span class="sd">'''Create a new invoice.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        asset (types.Assets): Currency.</span>
+<span class="sd">        asset (schemas.Assets): Currency.</span>
 <span class="sd">        amount (float): Amount of invoice in float.</span>
 <span class="sd">        description (Optional[str]): Description for the invoice. User will see this description when they pay the invoice. Up to 1024 characters. Defaults to None.</span>
 <span class="sd">        hidden_message (Optional[str]): Text of the message that will be shown to a user after the invoice is paid. Up to 2048 characters. Defaults to None.</span>
-<span class="sd">        paid_btn_name (Optional[types.PaidButtonNames]): Name of the button that will be shown to a user after the invoice is paid. Defaults to None.</span>
+<span class="sd">        paid_btn_name (Optional[schemas.PaidButtonNames]): Name of the button that will be shown to a user after the invoice is paid. Defaults to None.</span>
 <span class="sd">        paid_btn_url (Optional[str]): Required if paid_btn_name is used. URL to be opened when the button is pressed. You can set any success link (for example, a link to your bot). Starts with https or http. Defaults to None.</span>
 <span class="sd">        payload (Optional[str]): Any data you want to attach to the invoice (for example, user ID, payment ID, ect). Up to 4kb. Defaults to None.</span>
 <span class="sd">        allow_comments (bool): Allow a user to add a comment to the payment. Defaults to True.</span>
@@ -1262,7 +1288,7 @@
 <span class="sd">        expires_in (Optional[int]): You can set a payment time limit for the invoice in seconds. Values between 1-2678400 are accepted. Defaults to None.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        types.Invoice: Object of the created invoice.</span>
+<span class="sd">        schemas.Invoice: Object of the created invoice.</span>
 <span class="sd">    '''</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Called with args (</span><span class="si">{</span><span class="n">asset</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">amount</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">description</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">hidden_message</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">paid_btn_name</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">paid_btn_url</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">payload</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">allow_comments</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">allow_anonymous</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">expires_in</span><span class="si">}</span><span class="s1">)'</span><span class="p">)</span>
     <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
@@ -1310,25 +1336,25 @@
 <td>
 <code><span title="typing.List">List</span>[<a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas" href="schemas/#src.CryptoPayAPI.schemas">schemas</a>.<a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas.Balance" href="schemas/#src.CryptoPayAPI.schemas.Balance">Balance</a>]</code>
 </td>
-<td><p>List[types.Balance]: Array of assets.</p></td>
+<td><p>List[schemas.Balance]: Array of assets.</p></td>
 </tr>
 </tbody>
 </table>
 <details class="quote">
 <summary>Source code in <code>src/CryptoPayAPI/api.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">115</span>
-<span class="normal">116</span>
-<span class="normal">117</span>
-<span class="normal">118</span>
-<span class="normal">119</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">119</span>
 <span class="normal">120</span>
 <span class="normal">121</span>
 <span class="normal">122</span>
-<span class="normal">123</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_balance</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">schemas</span><span class="o">.</span><span class="n">Balance</span><span class="p">]:</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_balance</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">schemas</span><span class="o">.</span><span class="n">Balance</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">'''Use this method to get a balance of your app.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        List[types.Balance]: Array of assets.</span>
+<span class="sd">        List[schemas.Balance]: Array of assets.</span>
 <span class="sd">    '''</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">'Called!'</span><span class="p">)</span>
     <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callApi</span><span class="p">(</span><span class="s1">'GET'</span><span class="p">,</span> <span class="s1">'getBalance'</span><span class="p">)</span>
@@ -1359,25 +1385,25 @@
 <td>
 <code><span title="typing.List">List</span>[<a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas" href="schemas/#src.CryptoPayAPI.schemas">schemas</a>.<a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas.Currency" href="schemas/#src.CryptoPayAPI.schemas.Currency">Currency</a>]</code>
 </td>
-<td><p>List[types.Currency]: Array of currencies.</p></td>
+<td><p>List[schemas.Currency]: Array of currencies.</p></td>
 </tr>
 </tbody>
 </table>
 <details class="quote">
 <summary>Source code in <code>src/CryptoPayAPI/api.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">135</span>
-<span class="normal">136</span>
-<span class="normal">137</span>
-<span class="normal">138</span>
-<span class="normal">139</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">139</span>
 <span class="normal">140</span>
 <span class="normal">141</span>
 <span class="normal">142</span>
-<span class="normal">143</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_currencies</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">schemas</span><span class="o">.</span><span class="n">Currency</span><span class="p">]:</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_currencies</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">schemas</span><span class="o">.</span><span class="n">Currency</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">'''Use this method to get a list of supported currencies.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        List[types.Currency]: Array of currencies.</span>
+<span class="sd">        List[schemas.Currency]: Array of currencies.</span>
 <span class="sd">    '''</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">'Called!'</span><span class="p">)</span>
     <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callApi</span><span class="p">(</span><span class="s1">'GET'</span><span class="p">,</span> <span class="s1">'getCurrencies'</span><span class="p">)</span>
@@ -1408,25 +1434,25 @@
 <td>
 <code><span title="typing.List">List</span>[<a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas" href="schemas/#src.CryptoPayAPI.schemas">schemas</a>.<a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas.ExchangeRate" href="schemas/#src.CryptoPayAPI.schemas.ExchangeRate">ExchangeRate</a>]</code>
 </td>
-<td><p>List[types.ExchangeRate]: Array of currencies.</p></td>
+<td><p>List[schemas.ExchangeRate]: Array of currencies.</p></td>
 </tr>
 </tbody>
 </table>
 <details class="quote">
 <summary>Source code in <code>src/CryptoPayAPI/api.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">125</span>
-<span class="normal">126</span>
-<span class="normal">127</span>
-<span class="normal">128</span>
-<span class="normal">129</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">129</span>
 <span class="normal">130</span>
 <span class="normal">131</span>
 <span class="normal">132</span>
-<span class="normal">133</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_exchange_rates</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">schemas</span><span class="o">.</span><span class="n">ExchangeRate</span><span class="p">]:</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_exchange_rates</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">schemas</span><span class="o">.</span><span class="n">ExchangeRate</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">'''Use this method to get exchange rates of supported currencies.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        List[types.ExchangeRate]: Array of currencies.</span>
+<span class="sd">        List[schemas.ExchangeRate]: Array of currencies.</span>
 <span class="sd">    '''</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">'Called!'</span><span class="p">)</span>
     <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callApi</span><span class="p">(</span><span class="s1">'GET'</span><span class="p">,</span> <span class="s1">'getExchangeRates'</span><span class="p">)</span>
@@ -1458,7 +1484,7 @@
 <tr>
 <td><code>asset</code></td>
 <td>
-<code><span title="typing.Optional">Optional</span>[<span title="src.CryptoPayAPI.types">types</span>.<a class="autorefs autorefs-internal" title="src.CryptoPayAPI.types.Assets" href="schemas/#src.CryptoPayAPI.schemas.Assets">Assets</a>]</code>
+<code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas" href="schemas/#src.CryptoPayAPI.schemas">schemas</a>.<a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas.Assets" href="schemas/#src.CryptoPayAPI.schemas.Assets">Assets</a>]</code>
 </td>
 <td><p>Currency codes separated by comma. Defaults to all assets.</p></td>
 <td>
@@ -1478,7 +1504,7 @@
 <tr>
 <td><code>status</code></td>
 <td>
-<code><span title="typing.Optional">Optional</span>[<span title="src.CryptoPayAPI.types">types</span>.<a class="autorefs autorefs-internal" title="src.CryptoPayAPI.types.InvoiceStatus" href="schemas/#src.CryptoPayAPI.schemas.InvoiceStatus">InvoiceStatus</a>]</code>
+<code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas" href="schemas/#src.CryptoPayAPI.schemas">schemas</a>.<a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas.InvoiceStatus" href="schemas/#src.CryptoPayAPI.schemas.InvoiceStatus">InvoiceStatus</a>]</code>
 </td>
 <td><p>Status of invoices to be returned. Defaults to all statuses.</p></td>
 <td>
@@ -1520,17 +1546,13 @@
 <td>
 <code><span title="typing.List">List</span>[<a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas" href="schemas/#src.CryptoPayAPI.schemas">schemas</a>.<a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas.Invoice" href="schemas/#src.CryptoPayAPI.schemas.Invoice">Invoice</a>]</code>
 </td>
-<td><p>List[types.Invoice]: Array of invoices.</p></td>
+<td><p>List[schemas.Invoice]: Array of invoices.</p></td>
 </tr>
 </tbody>
 </table>
 <details class="quote">
 <summary>Source code in <code>src/CryptoPayAPI/api.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">194</span>
-<span class="normal">195</span>
-<span class="normal">196</span>
-<span class="normal">197</span>
-<span class="normal">198</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">198</span>
 <span class="normal">199</span>
 <span class="normal">200</span>
 <span class="normal">201</span>
@@ -1556,7 +1578,11 @@
 <span class="normal">221</span>
 <span class="normal">222</span>
 <span class="normal">223</span>
-<span class="normal">224</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_invoices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_invoices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                        <span class="n">asset</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">schemas</span><span class="o">.</span><span class="n">Assets</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                        <span class="n">invoice_ids</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                        <span class="n">status</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">schemas</span><span class="o">.</span><span class="n">InvoiceStatus</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1565,14 +1591,14 @@
 <span class="w">    </span><span class="sd">'''Use this method to get invoices of your app.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        asset (Optional[types.Assets]): Currency codes separated by comma. Defaults to all assets.</span>
+<span class="sd">        asset (Optional[schemas.Assets]): Currency codes separated by comma. Defaults to all assets.</span>
 <span class="sd">        invoice_ids (Optional[str]): Invoice IDs separated by comma. Defaults to None.</span>
-<span class="sd">        status (Optional[types.InvoiceStatus]): Status of invoices to be returned. Defaults to all statuses.</span>
+<span class="sd">        status (Optional[schemas.InvoiceStatus]): Status of invoices to be returned. Defaults to all statuses.</span>
 <span class="sd">        offset (int): Offset needed to return a specific subset of invoices. Defaults to 0.</span>
 <span class="sd">        count (int): Number of invoices to be returned. Values between 1-1000 are accepted. Defaults to 100.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        List[types.Invoice]: Array of invoices.</span>
+<span class="sd">        List[schemas.Invoice]: Array of invoices.</span>
 <span class="sd">    '''</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Called with args (</span><span class="si">{</span><span class="n">asset</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">invoice_ids</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">offset</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s1">)'</span><span class="p">)</span>
     <span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
@@ -1613,25 +1639,25 @@
 <td>
 <code><a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas" href="schemas/#src.CryptoPayAPI.schemas">schemas</a>.<a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas.Application" href="schemas/#src.CryptoPayAPI.schemas.Application">Application</a></code>
 </td>
-<td><p>types.Application: Basic information about an app.</p></td>
+<td><p>schemas.Application: Basic information about an app.</p></td>
 </tr>
 </tbody>
 </table>
 <details class="quote">
 <summary>Source code in <code>src/CryptoPayAPI/api.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">105</span>
-<span class="normal">106</span>
-<span class="normal">107</span>
-<span class="normal">108</span>
-<span class="normal">109</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">109</span>
 <span class="normal">110</span>
 <span class="normal">111</span>
 <span class="normal">112</span>
-<span class="normal">113</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_me</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">schemas</span><span class="o">.</span><span class="n">Application</span><span class="p">:</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">get_me</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">schemas</span><span class="o">.</span><span class="n">Application</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">'''Returns basic information about an app.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        types.Application: Basic information about an app.</span>
+<span class="sd">        schemas.Application: Basic information about an app.</span>
 <span class="sd">    '''</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">'Called!'</span><span class="p">)</span>
     <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_callApi</span><span class="p">(</span><span class="s1">'GET'</span><span class="p">,</span> <span class="s1">'getMe'</span><span class="p">)</span>
@@ -1695,17 +1721,13 @@
 <td>
 <code><a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas" href="schemas/#src.CryptoPayAPI.schemas">schemas</a>.<a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas.Update" href="schemas/#src.CryptoPayAPI.schemas.Update">Update</a></code>
 </td>
-<td><p>types.Update: Webhook update.</p></td>
+<td><p>schemas.Update: Webhook update.</p></td>
 </tr>
 </tbody>
 </table>
 <details class="quote">
 <summary>Source code in <code>src/CryptoPayAPI/api.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">260</span>
-<span class="normal">261</span>
-<span class="normal">262</span>
-<span class="normal">263</span>
-<span class="normal">264</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">264</span>
 <span class="normal">265</span>
 <span class="normal">266</span>
 <span class="normal">267</span>
@@ -1728,7 +1750,11 @@
 <span class="normal">284</span>
 <span class="normal">285</span>
 <span class="normal">286</span>
-<span class="normal">287</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">process_webhook_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">process_webhook_update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                                  <span class="n">body</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span>
                                  <span class="n">headers</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">schemas</span><span class="o">.</span><span class="n">Update</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">'''Process webhook update.</span>
@@ -1738,7 +1764,7 @@
 <span class="sd">        headers (dict): Update request headers.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        types.Update: Webhook update.</span>
+<span class="sd">        schemas.Update: Webhook update.</span>
 <span class="sd">    '''</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Called with args: (</span><span class="si">{</span><span class="n">body</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">headers</span><span class="si">}</span><span class="s1">)'</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
     <span class="n">update</span> <span class="o">=</span> <span class="n">schemas</span><span class="o">.</span><span class="n">Update</span><span class="p">(</span><span class="o">**</span><span class="n">loads</span><span class="p">(</span><span class="n">body</span><span class="p">),</span> <span class="n">raw_body</span><span class="o">=</span><span class="n">body</span><span class="p">)</span>
@@ -1793,7 +1819,7 @@
 <tr>
 <td><code>asset</code></td>
 <td>
-<code><span title="src.CryptoPayAPI.types">types</span>.<a class="autorefs autorefs-internal" title="src.CryptoPayAPI.types.Assets" href="schemas/#src.CryptoPayAPI.schemas.Assets">Assets</a></code>
+<code><a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas" href="schemas/#src.CryptoPayAPI.schemas">schemas</a>.<a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas.Assets" href="schemas/#src.CryptoPayAPI.schemas.Assets">Assets</a></code>
 </td>
 <td><p>Currency.</p></td>
 <td>
@@ -1855,17 +1881,13 @@
 <td>
 <code><a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas" href="schemas/#src.CryptoPayAPI.schemas">schemas</a>.<a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas.Transfer" href="schemas/#src.CryptoPayAPI.schemas.Transfer">Transfer</a></code>
 </td>
-<td><p>types.Transfer: Object of completed <code>transfer</code>.</p></td>
+<td><p>schemas.Transfer: Object of completed <code>transfer</code>.</p></td>
 </tr>
 </tbody>
 </table>
 <details class="quote">
 <summary>Source code in <code>src/CryptoPayAPI/api.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">226</span>
-<span class="normal">227</span>
-<span class="normal">228</span>
-<span class="normal">229</span>
-<span class="normal">230</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">230</span>
 <span class="normal">231</span>
 <span class="normal">232</span>
 <span class="normal">233</span>
@@ -1893,7 +1915,11 @@
 <span class="normal">255</span>
 <span class="normal">256</span>
 <span class="normal">257</span>
-<span class="normal">258</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">transfer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">transfer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                    <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
                    <span class="n">asset</span><span class="p">:</span> <span class="n">schemas</span><span class="o">.</span><span class="n">Assets</span><span class="p">,</span>
                    <span class="n">amount</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
@@ -1904,14 +1930,14 @@
 
 <span class="sd">    Args:</span>
 <span class="sd">        user_id (int): Telegram user_id.</span>
-<span class="sd">        asset (types.Assets): Currency.</span>
+<span class="sd">        asset (schemas.Assets): Currency.</span>
 <span class="sd">        amount (float): Amount of the transfer in float. The minimum and maximum amounts for each of the support asset roughly correspond to the limit of 0.01-25000 USD. Use `get_exchange_rates` to convert amounts.</span>
 <span class="sd">        spend_id (str): Unique ID to make your request idempotent and ensure that only one of the transfers with the same `spend_id` will be accepted by Crypto Pay API. This parameter is useful when the transfer should be retried (i.e. request timeout, connection reset, 500 HTTP status, etc). It can be some unique withdrawal identifier for example. Up to 64 symbols.</span>
 <span class="sd">        comment (Optional[str], optional): Comment for the transfer. Users will see this comment when they receive a notification about the transfer. Up to 1024 symbols. Defaults to None.</span>
 <span class="sd">        disable_send_notification (Optional[bool], optional): Pass `True` if the user should not receive a notification about the transfer. Defaults to False.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        types.Transfer: Object of completed `transfer`.</span>
+<span class="sd">        schemas.Transfer: Object of completed `transfer`.</span>
 <span class="sd">    '''</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Called with args (</span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">asset</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">amount</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">spend_id</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">comment</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">disable_send_notification</span><span class="si">}</span><span class="s1">)'</span><span class="p">)</span>
     <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
