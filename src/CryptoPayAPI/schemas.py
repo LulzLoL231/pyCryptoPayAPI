@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-#  CryptoPayAPI - types.
+#  CryptoPayAPI - schemas.
 #  Created by LulzLoL231 at 2/6/22
 #
 import logging

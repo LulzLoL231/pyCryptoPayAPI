@@ -24,11 +24,15 @@ TESTHOST = 'https://testnet-pay.crypt.bot/api'
 class CryptoPay:
     '''CryptoPay payment system.
     '''
-    def __init__(self, api_key: str, testnet: bool = False) -> None:
+    def __init__(
+        self, api_key: str, testnet: bool = False,
+        client: AsyncClient | None = None
+    ) -> None:
         '''
         Args:
             api_key (str): CryptoPay API token.
             testnet (bool): Use Testnet? Defaults to False.
+            client (AsyncClient, optional): Using custom AsyncClient. Defaults is None.
         '''
         self.timeout_sec = 5
         self.log = logging.getLogger('CryptoPay')
@@ -41,7 +45,7 @@ class CryptoPay:
             self.endpoint = TESTHOST
         else:
             self.endpoint = MAINHOST
-        self.client = AsyncClient(
+        self.client = client or AsyncClient(
             headers=self.headers, base_url=self.endpoint,
             timeout=Timeout(self.timeout_sec)
         )
@@ -106,7 +110,7 @@ class CryptoPay:
         '''Returns basic information about an app.
 
         Returns:
-            types.Application: Basic information about an app.
+            schemas.Application: Basic information about an app.
         '''
         self.log.debug('Called!')
         result = await self._callApi('GET', 'getMe')
@@ -116,7 +120,7 @@ class CryptoPay:
         '''Use this method to get a balance of your app.
 
         Returns:
-            List[types.Balance]: Array of assets.
+            List[schemas.Balance]: Array of assets.
         '''
         self.log.debug('Called!')
         result = await self._callApi('GET', 'getBalance')
@@ -126,7 +130,7 @@ class CryptoPay:
         '''Use this method to get exchange rates of supported currencies.
 
         Returns:
-            List[types.ExchangeRate]: Array of currencies.
+            List[schemas.ExchangeRate]: Array of currencies.
         '''
         self.log.debug('Called!')
         result = await self._callApi('GET', 'getExchangeRates')
@@ -136,7 +140,7 @@ class CryptoPay:
         '''Use this method to get a list of supported currencies.
 
         Returns:
-            List[types.Currency]: Array of currencies.
+            List[schemas.Currency]: Array of currencies.
         '''
         self.log.debug('Called!')
         result = await self._callApi('GET', 'getCurrencies')
@@ -156,11 +160,11 @@ class CryptoPay:
         '''Create a new invoice.
 
         Args:
-            asset (types.Assets): Currency.
+            asset (schemas.Assets): Currency.
             amount (float): Amount of invoice in float.
             description (Optional[str]): Description for the invoice. User will see this description when they pay the invoice. Up to 1024 characters. Defaults to None.
             hidden_message (Optional[str]): Text of the message that will be shown to a user after the invoice is paid. Up to 2048 characters. Defaults to None.
-            paid_btn_name (Optional[types.PaidButtonNames]): Name of the button that will be shown to a user after the invoice is paid. Defaults to None.
+            paid_btn_name (Optional[schemas.PaidButtonNames]): Name of the button that will be shown to a user after the invoice is paid. Defaults to None.
             paid_btn_url (Optional[str]): Required if paid_btn_name is used. URL to be opened when the button is pressed. You can set any success link (for example, a link to your bot). Starts with https or http. Defaults to None.
             payload (Optional[str]): Any data you want to attach to the invoice (for example, user ID, payment ID, ect). Up to 4kb. Defaults to None.
             allow_comments (bool): Allow a user to add a comment to the payment. Defaults to True.
@@ -168,7 +172,7 @@ class CryptoPay:
             expires_in (Optional[int]): You can set a payment time limit for the invoice in seconds. Values between 1-2678400 are accepted. Defaults to None.
 
         Returns:
-            types.Invoice: Object of the created invoice.
+            schemas.Invoice: Object of the created invoice.
         '''
         self.log.debug(f'Called with args ({asset}, {amount}, {description}, {hidden_message}, {paid_btn_name}, {paid_btn_url}, {payload}, {allow_comments}, {allow_anonymous}, {expires_in})')
         params = {
@@ -200,14 +204,14 @@ class CryptoPay:
         '''Use this method to get invoices of your app.
 
         Args:
-            asset (Optional[types.Assets]): Currency codes separated by comma. Defaults to all assets.
+            asset (Optional[schemas.Assets]): Currency codes separated by comma. Defaults to all assets.
             invoice_ids (Optional[str]): Invoice IDs separated by comma. Defaults to None.
-            status (Optional[types.InvoiceStatus]): Status of invoices to be returned. Defaults to all statuses.
+            status (Optional[schemas.InvoiceStatus]): Status of invoices to be returned. Defaults to all statuses.
             offset (int): Offset needed to return a specific subset of invoices. Defaults to 0.
             count (int): Number of invoices to be returned. Values between 1-1000 are accepted. Defaults to 100.
 
         Returns:
-            List[types.Invoice]: Array of invoices.
+            List[schemas.Invoice]: Array of invoices.
         '''
         self.log.debug(f'Called with args ({asset}, {invoice_ids}, {status}, {offset}, {count})')
         params: Dict[str, Union[str, int]] = {
@@ -234,14 +238,14 @@ class CryptoPay:
 
         Args:
             user_id (int): Telegram user_id.
-            asset (types.Assets): Currency.
+            asset (schemas.Assets): Currency.
             amount (float): Amount of the transfer in float. The minimum and maximum amounts for each of the support asset roughly correspond to the limit of 0.01-25000 USD. Use `get_exchange_rates` to convert amounts.
             spend_id (str): Unique ID to make your request idempotent and ensure that only one of the transfers with the same `spend_id` will be accepted by Crypto Pay API. This parameter is useful when the transfer should be retried (i.e. request timeout, connection reset, 500 HTTP status, etc). It can be some unique withdrawal identifier for example. Up to 64 symbols.
             comment (Optional[str], optional): Comment for the transfer. Users will see this comment when they receive a notification about the transfer. Up to 1024 symbols. Defaults to None.
             disable_send_notification (Optional[bool], optional): Pass `True` if the user should not receive a notification about the transfer. Defaults to False.
 
         Returns:
-            types.Transfer: Object of completed `transfer`.
+            schemas.Transfer: Object of completed `transfer`.
         '''
         self.log.debug(f'Called with args ({user_id}, {asset}, {amount}, {spend_id}, {comment}, {disable_send_notification})')
         params = {
@@ -267,7 +271,7 @@ class CryptoPay:
             headers (dict): Update request headers.
 
         Returns:
-            types.Update: Webhook update.
+            schemas.Update: Webhook update.
         '''
         self.log.debug(f'Called with args: ({body}, {headers})')  # type: ignore
         update = schemas.Update(**loads(body), raw_body=body)
