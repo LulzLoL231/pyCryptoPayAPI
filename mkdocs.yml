@@ -2,32 +2,35 @@ site_name: pyCryptoPay-SDK Documentation
 repo_url: https://github.com/LulzLoL231/pyCryptoPayAPI
 repo_name: LulzLoL231/pyCryptoPayAPI
 edit_uri: edit/master/docs/
-copyright: Copyright &copy; 2022 Maxim Mosin
+copyright: Copyright &copy; 2023 Maxim Mosin
 
 nav:
-  - Home: 'index.md'
-  - Install: 'install.md'
-  - 'Get API token': 'get_token.md'
-  - Examples:
-    - 'Get application': 'examples/get_me.md'
-    - 'Use testnet': 'examples/testnet_usage.md'
-    - 'Transfer crypto': 'examples/transfer_usage.md'
-    - Webhook: 'examples/webhook_example.md'
-  - 'Issue tracker': 'https://github.com/LulzLoL231/pyCryptoPayAPI/issues'
-  - API: 'API/'
-  - 'CryptoPay API Docs': 'https://help.crypt.bot/crypto-pay-api'
+  - Главная: 'index.md'
+  - Установка: 'install.md'
+  - Получение API токена: 'get_token.md'
+  - Примеры:
+    - Получение объекта приложения: 'examples/get_me.md'
+    - Использование тестовой сети: 'examples/testnet_usage.md'
+    - Отправка криптовалюты: 'examples/transfer_usage.md'
+    - Вебхук: 'examples/webhook_example.md'
+  - API:
+    - CryptoPay: 'API/CryptoPayAPI/index.md'
+    - Схемы: 'API/CryptoPayAPI/schemas.md'
+    - Исключения: 'API/CryptoPayAPI/errors.md'
+  - Помощь:
+    - Сообщить о багах: 'https://github.com/LulzLoL231/pyCryptoPayAPI/issues'
+    - Документация CryptoPay API: 'https://help.crypt.bot/crypto-pay-api'
 
 theme:
   name: material
+  language: ru
   icon:
     repo: fontawesome/brands/git-alt
   features:
-    - navigation.instant
     - navigation.tracking
     - navigation.sections
     - navigation.top
     - content.code.annotate
-    - toc.integrate
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -41,40 +44,41 @@ theme:
         name: Switch to light mode
 
 plugins:
-  - gen-files:
-      scripts:
-      - docs/gen_ref_pages.py
-  - literate-nav:
-      nav_file: SUMMARY.md
   - git-committers:
-      repository: squidfunk/mkdocs-material
+      repository: LulzLoL231/pyCryptoPayAPI
   - git-authors
   - search
   - mkdocstrings
   - glightbox
   - i18n:
-      default_language: en
-      docs_structure: folder
+      default_language: ru
+      docs_structure: suffix
+      material_alternate: true
       languages:
         en:
           name: English
-          build: true
           site_name: pyCryptoPay-SDK Documentation
+          homepage: ./en/
         ru:
           name: Русский
-          build: true
           site_name: Документация pyCryptoPay-SDK
+          homepage: ./ru/
       nav_translations:
-        ru:
-          - Home: 'Главная'
-          - Install: 'Установка'
-          - 'Get API token': 'Получение API токена'
-          - Examples: 'Примеры'
-          - 'Get application': 'Получение объекта приложения'
-          - 'Use testnet': 'Использование тестовой сети'
-          - 'Transfer crypto': 'Отправка криптовалюты'
-          - Webhook: 'Webhook'
-          - 'Issue tracker': 'Issue трекер'
+        en:
+          Главная: Home
+          Установка: Install
+          Получение API токена: Get API token
+          Примеры: Examples
+          Получение объекта приложения: Get application
+          Использование тестовой сети: Use testnet
+          Отправка криптовалюты: Transfer crypto
+          Вебхук: Webhook
+          CryptoPay: CryptoPay
+          Классы ошибок: Errors
+          Схемы: Schemas
+          Помощь: Help
+          Сообщить о багах: Issue tracker
+          Документация CryptoPay API: CryptoPay API Docs
 
   - git-revision-date-localized:
       enable_creation_date: true
@@ -89,13 +93,6 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/LulzLoL231
       name: Author GitHub
-  alternate:
-    - name: English
-      link: ./en/
-      lang: en
-    - name: Русский
-      link: ./ru/
-      lang: ru
 
 markdown_extensions:
   - admonition

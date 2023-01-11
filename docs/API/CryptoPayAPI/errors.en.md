@@ -1,1 +1,2 @@
+# Errors
 ::: src.CryptoPayAPI.errors

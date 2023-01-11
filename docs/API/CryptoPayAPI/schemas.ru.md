@@ -1,0 +1,2 @@
+# Схемы
+::: src.CryptoPayAPI.schemas

@@ -1,0 +1,2 @@
+# Исключения
+::: src.CryptoPayAPI.errors
