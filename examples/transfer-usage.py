@@ -17,7 +17,7 @@ if not TOKEN:
 
 
 async def main():
-    cp = CryptoPay(TOKEN, testnet=True)
+    cp = CryptoPay(TOKEN)
 
     if input('You want to donate me 3 USDT? -> ').lower() in ['n', 'no', '-']:
         print('Okay :(')
