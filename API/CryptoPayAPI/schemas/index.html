@@ -1,0 +1,1764 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="../../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-8.5.10" name="generator"/>
+<title>Схемы - Документация pyCryptoPay-SDK</title>
+<link href="../../../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../../../assets/_mkdocstrings.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            
+                .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+                </style><script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="" data-md-color-primary="" data-md-color-scheme="default" dir="ltr">
+<script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#_1">
+          Перейти к содержанию
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Верхний колонтитул" class="md-header__inner md-grid">
+<a aria-label="Документация pyCryptoPay-SDK" class="md-header__button md-logo" data-md-component="logo" href="../../../ru/" title="Документация pyCryptoPay-SDK">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Документация pyCryptoPay-SDK
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Схемы
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_2" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"></path></svg>
+</label>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="" data-md-color-scheme="slate" id="__palette_2" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"></path></svg>
+</label>
+</form>
+<div class="md-header__option">
+<div class="md-select">
+<button aria-label="Выберите язык" class="md-header__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24Z"></path></svg>
+</button>
+<div class="md-select__inner">
+<ul class="md-select__list">
+<li class="md-select__item">
+<a class="md-select__link" href="./" hreflang="ru">
+                    Русский
+                  </a>
+</li>
+<li class="md-select__item">
+<a class="md-select__link" href="../../../en/API/CryptoPayAPI/schemas/" hreflang="en">
+                    English
+                  </a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Поиск" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Поиск" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="Поиск" class="md-search__options">
+<button aria-label="Очистить" class="md-search__icon md-icon" tabindex="-1" title="Очистить" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/LulzLoL231/pyCryptoPayAPI" title="Перейти к репозиторию">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    LulzLoL231/pyCryptoPayAPI
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Навигация" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Документация pyCryptoPay-SDK" class="md-nav__button md-logo" data-md-component="logo" href="../../../ru/" title="Документация pyCryptoPay-SDK">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+    Документация pyCryptoPay-SDK
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/LulzLoL231/pyCryptoPayAPI" title="Перейти к репозиторию">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    LulzLoL231/pyCryptoPayAPI
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../..">
+        Главная
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../install/">
+        Установка
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../get_token/">
+        Получение API токена
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4">
+          Примеры
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Примеры" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+          Примеры
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../examples/get_me/">
+        Получение объекта приложения
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../examples/testnet_usage/">
+        Использование тестовой сети
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../examples/transfer_usage/">
+        Отправка криптовалюты
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../examples/webhook_example/">
+        Вебхук
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5">
+          API
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="API" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+          API
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../">
+        CryptoPay
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Схемы
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        Схемы
+      </a>
+<nav aria-label="Содержание раздела" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Содержание раздела
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.schemas">
+    src.CryptoPayAPI.schemas
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.schemas.Application">
+    Application
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.schemas.Assets">
+    Assets
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.schemas.Balance">
+    Balance
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.schemas.Currency">
+    Currency
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.schemas.ExchangeRate">
+    ExchangeRate
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.schemas.Invoice">
+    Invoice
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.schemas.InvoiceStatus">
+    InvoiceStatus
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.schemas.PaidButtonNames">
+    PaidButtonNames
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.schemas.Transfer">
+    Transfer
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.schemas.Update">
+    Update
+  </a>
+<nav aria-label="Update" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.schemas.Update.check_signature">
+    check_signature()
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.schemas.UpdateType">
+    UpdateType
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../errors/">
+        Исключения
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--section md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6">
+          Помощь
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Помощь" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
+          Помощь
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="https://github.com/LulzLoL231/pyCryptoPayAPI/issues">
+        Сообщить о багах
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="https://help.crypt.bot/crypto-pay-api">
+        Документация CryptoPay API
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Содержание раздела" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Содержание раздела
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.schemas">
+    src.CryptoPayAPI.schemas
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.schemas.Application">
+    Application
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.schemas.Assets">
+    Assets
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.schemas.Balance">
+    Balance
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.schemas.Currency">
+    Currency
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.schemas.ExchangeRate">
+    ExchangeRate
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.schemas.Invoice">
+    Invoice
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.schemas.InvoiceStatus">
+    InvoiceStatus
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.schemas.PaidButtonNames">
+    PaidButtonNames
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.schemas.Transfer">
+    Transfer
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.schemas.Update">
+    Update
+  </a>
+<nav aria-label="Update" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.schemas.Update.check_signature">
+    check_signature()
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#src.CryptoPayAPI.schemas.UpdateType">
+    UpdateType
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/LulzLoL231/pyCryptoPayAPI/edit/master/docs/API/CryptoPayAPI/schemas.ru.md" title="Редактировать страницу">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"></path></svg>
+</a>
+<h1 id="_1">Схемы</h1>
+<div class="doc doc-object doc-module">
+<a id="src.CryptoPayAPI.schemas"></a>
+<div class="doc doc-contents first">
+<div class="doc doc-children">
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="src.CryptoPayAPI.schemas.Application">
+<code>Application</code>
+</h2>
+<div class="doc doc-contents">
+<p class="doc doc-class-bases">
+        Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+<p>Application info.</p>
+<p><strong>Attributes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>app_id</code></td>
+<td>
+<code>int</code>
+</td>
+<td><p>Application unique ID.</p></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>
+<code>str</code>
+</td>
+<td><p>Application name.</p></td>
+</tr>
+<tr>
+<td><code>payment_processing_bot_username</code></td>
+<td>
+<code>str</code>
+</td>
+<td><p>Username of Crypto bot.</p></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>src/CryptoPayAPI/schemas.py</code></summary>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Application</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">'''Application info.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        app_id (int): Application unique ID.</span>
+<span class="sd">        name (str): Application name.</span>
+<span class="sd">        payment_processing_bot_username (str): Username of Crypto bot.</span>
+<span class="sd">    '''</span>
+    <span class="n">app_id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">payment_processing_bot_username</span><span class="p">:</span> <span class="nb">str</span>
+</code></pre></div></td></tr></table></div>
+</details>
+<div class="doc doc-children">
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="src.CryptoPayAPI.schemas.Assets">
+<code>Assets</code>
+</h2>
+<div class="doc doc-contents">
+<p class="doc doc-class-bases">
+        Bases: <code><span title="enum.Enum">Enum</span></code></p>
+<p>Currency code.</p>
+<p><strong>Attributes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BTC</code></td>
+<td>
+<code>str</code>
+</td>
+<td><p>Bitcoin</p></td>
+</tr>
+<tr>
+<td><code>TON</code></td>
+<td>
+<code>str</code>
+</td>
+<td><p>Toncoin</p></td>
+</tr>
+<tr>
+<td><code>ETH</code></td>
+<td>
+<code>str</code>
+</td>
+<td><p>Ethereum</p></td>
+</tr>
+<tr>
+<td><code>USDT</code></td>
+<td>
+<code>str</code>
+</td>
+<td><p>Tether</p></td>
+</tr>
+<tr>
+<td><code>USDC</code></td>
+<td>
+<code>str</code>
+</td>
+<td><p>USD Coin</p></td>
+</tr>
+<tr>
+<td><code>BUSD</code></td>
+<td>
+<code>str</code>
+</td>
+<td><p>Binance USD</p></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>src/CryptoPayAPI/schemas.py</code></summary>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Assets</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">'''Currency code.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        BTC (str): Bitcoin</span>
+<span class="sd">        TON (str): Toncoin</span>
+<span class="sd">        ETH (str): Ethereum</span>
+<span class="sd">        USDT (str): Tether</span>
+<span class="sd">        USDC (str): USD Coin</span>
+<span class="sd">        BUSD (str): Binance USD</span>
+<span class="sd">    '''</span>
+    <span class="n">BTC</span> <span class="o">=</span> <span class="s1">'BTC'</span>
+    <span class="n">TON</span> <span class="o">=</span> <span class="s1">'TON'</span>
+    <span class="n">ETH</span> <span class="o">=</span> <span class="s1">'ETH'</span>
+    <span class="n">USDT</span> <span class="o">=</span> <span class="s1">'USDT'</span>
+    <span class="n">USDC</span> <span class="o">=</span> <span class="s1">'USDC'</span>
+    <span class="n">BUSD</span> <span class="o">=</span> <span class="s1">'BUSD'</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
+</code></pre></div></td></tr></table></div>
+</details>
+<div class="doc doc-children">
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="src.CryptoPayAPI.schemas.Balance">
+<code>Balance</code>
+</h2>
+<div class="doc doc-contents">
+<p class="doc doc-class-bases">
+        Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+<p>Balance info.</p>
+<p><strong>Attributes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>currency_code</code></td>
+<td>
+<code>str</code>
+</td>
+<td><p>Currency code.</p></td>
+</tr>
+<tr>
+<td><code>available</code></td>
+<td>
+<code><span title="decimal.Decimal">Decimal</span></code>
+</td>
+<td><p>Available for using.</p></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>src/CryptoPayAPI/schemas.py</code></summary>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Balance</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">'''Balance info.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        currency_code (str): Currency code.</span>
+<span class="sd">        available (Decimal): Available for using.</span>
+<span class="sd">    '''</span>
+    <span class="n">currency_code</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">available</span><span class="p">:</span> <span class="n">Decimal</span>
+</code></pre></div></td></tr></table></div>
+</details>
+<div class="doc doc-children">
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="src.CryptoPayAPI.schemas.Currency">
+<code>Currency</code>
+</h2>
+<div class="doc doc-contents">
+<p class="doc doc-class-bases">
+        Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+<p>Currency info.</p>
+<p><strong>Attributes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>is_blockchain</code></td>
+<td>
+<code>bool</code>
+</td>
+<td><p>Is blockchain asset?</p></td>
+</tr>
+<tr>
+<td><code>is_stablecoin</code></td>
+<td>
+<code>bool</code>
+</td>
+<td><p>Is stable coin?</p></td>
+</tr>
+<tr>
+<td><code>is_fiat</code></td>
+<td>
+<code>bool</code>
+</td>
+<td><p>Is fiat asset?</p></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>
+<code>str</code>
+</td>
+<td><p>Name of currency.</p></td>
+</tr>
+<tr>
+<td><code>code</code></td>
+<td>
+<code>str</code>
+</td>
+<td><p>Code of currency.</p></td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td>
+<code><span title="typing.Optional">Optional</span>[str]</code>
+</td>
+<td><p><em>Optional</em>. URL of currency site.</p></td>
+</tr>
+<tr>
+<td><code>decimals</code></td>
+<td>
+<code>int</code>
+</td>
+<td><p>?</p></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>src/CryptoPayAPI/schemas.py</code></summary>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Currency</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">'''Currency info.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        is_blockchain (bool): Is blockchain asset?</span>
+<span class="sd">        is_stablecoin (bool): Is stable coin?</span>
+<span class="sd">        is_fiat (bool): Is fiat asset?</span>
+<span class="sd">        name (str): Name of currency.</span>
+<span class="sd">        code (str): Code of currency.</span>
+<span class="sd">        url (Optional[str]): *Optional*. URL of currency site.</span>
+<span class="sd">        decimals (int): ?</span>
+<span class="sd">    '''</span>
+    <span class="n">is_blockchain</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">is_stablecoin</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">is_fiat</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">code</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">decimals</span><span class="p">:</span> <span class="nb">int</span>
+</code></pre></div></td></tr></table></div>
+</details>
+<div class="doc doc-children">
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="src.CryptoPayAPI.schemas.ExchangeRate">
+<code>ExchangeRate</code>
+</h2>
+<div class="doc doc-contents">
+<p class="doc doc-class-bases">
+        Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+<p>Exchange rate info.</p>
+<p><strong>Attributes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>is_valid</code></td>
+<td>
+<code>bool</code>
+</td>
+<td><p>Is valid?</p></td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td>
+<code>str</code>
+</td>
+<td><p>Source asset.</p></td>
+</tr>
+<tr>
+<td><code>target</code></td>
+<td>
+<code>str</code>
+</td>
+<td><p>Target asset.</p></td>
+</tr>
+<tr>
+<td><code>rate</code></td>
+<td>
+<code><span title="decimal.Decimal">Decimal</span></code>
+</td>
+<td><p>Exchange rate.</p></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>src/CryptoPayAPI/schemas.py</code></summary>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ExchangeRate</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">'''Exchange rate info.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        is_valid (bool): Is valid?</span>
+<span class="sd">        source (str): Source asset.</span>
+<span class="sd">        target (str): Target asset.</span>
+<span class="sd">        rate (Decimal): Exchange rate.</span>
+<span class="sd">    '''</span>
+    <span class="n">is_valid</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">source</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">target</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">rate</span><span class="p">:</span> <span class="n">Decimal</span>
+</code></pre></div></td></tr></table></div>
+</details>
+<div class="doc doc-children">
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="src.CryptoPayAPI.schemas.Invoice">
+<code>Invoice</code>
+</h2>
+<div class="doc doc-contents">
+<p class="doc doc-class-bases">
+        Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+<p>Invoice info.</p>
+<p><strong>Attributes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>invoice_id</code></td>
+<td>
+<code>int</code>
+</td>
+<td><p>Unique ID for this invoice.</p></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>
+<code><a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas.InvoiceStatus" href="#src.CryptoPayAPI.schemas.InvoiceStatus">InvoiceStatus</a></code>
+</td>
+<td><p>Status of the invoice.</p></td>
+</tr>
+<tr>
+<td><code>hash</code></td>
+<td>
+<code>str</code>
+</td>
+<td><p>Hash of the invoice.</p></td>
+</tr>
+<tr>
+<td><code>asset</code></td>
+<td>
+<code><a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas.Assets" href="#src.CryptoPayAPI.schemas.Assets">Assets</a></code>
+</td>
+<td><p>Currency code.</p></td>
+</tr>
+<tr>
+<td><code>amount</code></td>
+<td>
+<code><span title="decimal.Decimal">Decimal</span></code>
+</td>
+<td><p>Amount of the invoice.</p></td>
+</tr>
+<tr>
+<td><code>pay_url</code></td>
+<td>
+<code>str</code>
+</td>
+<td><p>URL should be presented to the user to pay the invoice.</p></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>
+<code><span title="typing.Optional">Optional</span>[str]</code>
+</td>
+<td><p><em>Optional</em>. Description for this invoice.</p></td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td>
+<code><span title="datetime.datetime">datetime</span></code>
+</td>
+<td><p>Date the invoice was created in ISO 8601 format.</p></td>
+</tr>
+<tr>
+<td><code>allow_comments</code></td>
+<td>
+<code>bool</code>
+</td>
+<td><p><code>True</code>, if the user can add comment to the payment.</p></td>
+</tr>
+<tr>
+<td><code>allow_anonymous</code></td>
+<td>
+<code>bool</code>
+</td>
+<td><p><code>True</code>, if the user can pay the invoice anonymously.</p></td>
+</tr>
+<tr>
+<td><code>expiration_date</code></td>
+<td>
+<code><span title="typing.Optional">Optional</span>[<span title="datetime.datetime">datetime</span>]</code>
+</td>
+<td><p><em>Optional</em>. Date the invoice expires in Unix time.</p></td>
+</tr>
+<tr>
+<td><code>paid_at</code></td>
+<td>
+<code><span title="typing.Optional">Optional</span>[<span title="datetime.datetime">datetime</span>]</code>
+</td>
+<td><p><em>Optional</em>. Date the invoice was paid in Unix time.</p></td>
+</tr>
+<tr>
+<td><code>paid_anonymously</code></td>
+<td>
+<code><span title="typing.Optional">Optional</span>[bool]</code>
+</td>
+<td><p><code>True</code>, if the invoice was paid anonymously.</p></td>
+</tr>
+<tr>
+<td><code>comment</code></td>
+<td>
+<code><span title="typing.Optional">Optional</span>[str]</code>
+</td>
+<td><p><em>Optional</em>. Comment to the payment from the user.</p></td>
+</tr>
+<tr>
+<td><code>hidden_message</code></td>
+<td>
+<code><span title="typing.Optional">Optional</span>[str]</code>
+</td>
+<td><p><em>Optional</em>. Text of the hidden message for this invoice.</p></td>
+</tr>
+<tr>
+<td><code>payload</code></td>
+<td>
+<code><span title="typing.Optional">Optional</span>[str]</code>
+</td>
+<td><p><em>Optional</em>. Previously provided data for this invoice.</p></td>
+</tr>
+<tr>
+<td><code>paid_btn_name</code></td>
+<td>
+<code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas.PaidButtonNames" href="#src.CryptoPayAPI.schemas.PaidButtonNames">PaidButtonNames</a>]</code>
+</td>
+<td><p><em>Optional</em>. Name of the button.</p></td>
+</tr>
+<tr>
+<td><code>paid_btn_url</code></td>
+<td>
+<code><span title="typing.Optional">Optional</span>[str]</code>
+</td>
+<td><p><em>Optional</em>. URL of the button.</p></td>
+</tr>
+<tr>
+<td><code>fee</code></td>
+<td>
+<code><span title="typing.Optional">Optional</span>[<span title="decimal.Decimal">Decimal</span>]</code>
+</td>
+<td><p><em>Optional</em>. Amount of charged service fees. Returned only if the invoice has paid status.</p></td>
+</tr>
+<tr>
+<td><code>usd_rate</code></td>
+<td>
+<code><span title="typing.Optional">Optional</span>[<span title="decimal.Decimal">Decimal</span>]</code>
+</td>
+<td><p><em>Optional</em>. Price of the asset in USD. Returned only if the invoice has paid status.</p></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>src/CryptoPayAPI/schemas.py</code></summary>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Invoice</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">'''Invoice info.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        invoice_id (int): Unique ID for this invoice.</span>
+<span class="sd">        status (InvoiceStatus): Status of the invoice.</span>
+<span class="sd">        hash (str): Hash of the invoice.</span>
+<span class="sd">        asset (Assets): Currency code.</span>
+<span class="sd">        amount (Decimal): Amount of the invoice.</span>
+<span class="sd">        pay_url (str): URL should be presented to the user to pay the invoice.</span>
+<span class="sd">        description (Optional[str]): *Optional*. Description for this invoice.</span>
+<span class="sd">        created_at (datetime): Date the invoice was created in ISO 8601 format.</span>
+<span class="sd">        allow_comments (bool): `True`, if the user can add comment to the payment.</span>
+<span class="sd">        allow_anonymous (bool): `True`, if the user can pay the invoice anonymously.</span>
+<span class="sd">        expiration_date (Optional[datetime]): *Optional*. Date the invoice expires in Unix time.</span>
+<span class="sd">        paid_at (Optional[datetime]): *Optional*. Date the invoice was paid in Unix time.</span>
+<span class="sd">        paid_anonymously (Optional[bool]): `True`, if the invoice was paid anonymously.</span>
+<span class="sd">        comment (Optional[str]): *Optional*. Comment to the payment from the user.</span>
+<span class="sd">        hidden_message (Optional[str]): *Optional*. Text of the hidden message for this invoice.</span>
+<span class="sd">        payload (Optional[str]): *Optional*. Previously provided data for this invoice.</span>
+<span class="sd">        paid_btn_name (Optional[PaidButtonNames]): *Optional*. Name of the button.</span>
+<span class="sd">        paid_btn_url (Optional[str]): *Optional*. URL of the button.</span>
+<span class="sd">        fee (Optional[Decimal]): *Optional*. Amount of charged service fees. Returned only if the invoice has paid status.</span>
+<span class="sd">        usd_rate (Optional[Decimal]): *Optional*. Price of the asset in USD. Returned only if the invoice has paid status.</span>
+<span class="sd">    '''</span>
+    <span class="n">invoice_id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">status</span><span class="p">:</span> <span class="n">InvoiceStatus</span>
+    <span class="nb">hash</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">asset</span><span class="p">:</span> <span class="n">Assets</span>
+    <span class="n">amount</span><span class="p">:</span> <span class="n">Decimal</span>
+    <span class="n">pay_url</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">created_at</span><span class="p">:</span> <span class="n">datetime</span>
+    <span class="n">allow_comments</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">allow_anonymous</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">expiration_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span>
+    <span class="n">paid_at</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">datetime</span><span class="p">]</span>
+    <span class="n">paid_anonymously</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span>
+    <span class="n">comment</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">hidden_message</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">payload</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">paid_btn_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">PaidButtonNames</span><span class="p">]</span>
+    <span class="n">paid_btn_url</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">fee</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Decimal</span><span class="p">]</span>
+    <span class="n">usd_rate</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Decimal</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+</details>
+<div class="doc doc-children">
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="src.CryptoPayAPI.schemas.InvoiceStatus">
+<code>InvoiceStatus</code>
+</h2>
+<div class="doc doc-contents">
+<p class="doc doc-class-bases">
+        Bases: <code><span title="enum.Enum">Enum</span></code></p>
+<p>Status of invoice.</p>
+<p><strong>Attributes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ACTIVE</code></td>
+<td>
+<code>str</code>
+</td>
+<td><p>'active'</p></td>
+</tr>
+<tr>
+<td><code>PAID</code></td>
+<td>
+<code>str</code>
+</td>
+<td><p>'paid'</p></td>
+</tr>
+<tr>
+<td><code>EXPIRED</code></td>
+<td>
+<code>str</code>
+</td>
+<td><p>'expired'</p></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>src/CryptoPayAPI/schemas.py</code></summary>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">InvoiceStatus</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">'''Status of invoice.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        ACTIVE (str): 'active'</span>
+<span class="sd">        PAID (str): 'paid'</span>
+<span class="sd">        EXPIRED (str): 'expired'</span>
+<span class="sd">    '''</span>
+    <span class="n">ACTIVE</span> <span class="o">=</span> <span class="s1">'active'</span>
+    <span class="n">PAID</span> <span class="o">=</span> <span class="s1">'paid'</span>
+    <span class="n">EXPIRED</span> <span class="o">=</span> <span class="s1">'expired'</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
+</code></pre></div></td></tr></table></div>
+</details>
+<div class="doc doc-children">
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="src.CryptoPayAPI.schemas.PaidButtonNames">
+<code>PaidButtonNames</code>
+</h2>
+<div class="doc doc-contents">
+<p class="doc doc-class-bases">
+        Bases: <code><span title="enum.Enum">Enum</span></code></p>
+<p>Name of the button.</p>
+<p><strong>Attributes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>VIEW_ITEM</code></td>
+<td>
+<code>str</code>
+</td>
+<td><p>'viewItem'</p></td>
+</tr>
+<tr>
+<td><code>OPEN_CHANNEL</code></td>
+<td>
+<code>str</code>
+</td>
+<td><p>'openChannel'</p></td>
+</tr>
+<tr>
+<td><code>OPEN_BOT</code></td>
+<td>
+<code>str</code>
+</td>
+<td><p>'openBot'</p></td>
+</tr>
+<tr>
+<td><code>CALLBACK</code></td>
+<td>
+<code>str</code>
+</td>
+<td><p>'callback'</p></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>src/CryptoPayAPI/schemas.py</code></summary>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">PaidButtonNames</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">'''Name of the button.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        VIEW_ITEM (str): 'viewItem'</span>
+<span class="sd">        OPEN_CHANNEL (str): 'openChannel'</span>
+<span class="sd">        OPEN_BOT (str): 'openBot'</span>
+<span class="sd">        CALLBACK (str): 'callback'</span>
+<span class="sd">    '''</span>
+    <span class="n">VIEW_ITEM</span> <span class="o">=</span> <span class="s1">'viewItem'</span>
+    <span class="n">OPEN_CHANNEL</span> <span class="o">=</span> <span class="s1">'openChannel'</span>
+    <span class="n">OPEN_BOT</span> <span class="o">=</span> <span class="s1">'openBot'</span>
+    <span class="n">CALLBACK</span> <span class="o">=</span> <span class="s1">'callback'</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
+</code></pre></div></td></tr></table></div>
+</details>
+<div class="doc doc-children">
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="src.CryptoPayAPI.schemas.Transfer">
+<code>Transfer</code>
+</h2>
+<div class="doc doc-contents">
+<p class="doc doc-class-bases">
+        Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+<p>Transfer info.</p>
+<p><strong>Attributes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>transfer_id</code></td>
+<td>
+<code>int</code>
+</td>
+<td><p>Unique ID for this transfer.</p></td>
+</tr>
+<tr>
+<td><code>user_id</code></td>
+<td>
+<code>int</code>
+</td>
+<td><p>Telegram user ID the transfer was sent to.</p></td>
+</tr>
+<tr>
+<td><code>asset</code></td>
+<td>
+<code><a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas.Assets" href="#src.CryptoPayAPI.schemas.Assets">Assets</a></code>
+</td>
+<td><p>Currency code.</p></td>
+</tr>
+<tr>
+<td><code>amount</code></td>
+<td>
+<code><span title="decimal.Decimal">Decimal</span></code>
+</td>
+<td><p>Amount of the transfer.</p></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>
+<code><span title="typing.Literal">Literal</span>['completed']</code>
+</td>
+<td><p>Status of the transfer, can be “completed”.</p></td>
+</tr>
+<tr>
+<td><code>completed_at</code></td>
+<td>
+<code><span title="datetime.datetime">datetime</span></code>
+</td>
+<td><p>Date the transfer was completed in ISO 8601 format.</p></td>
+</tr>
+<tr>
+<td><code>comment</code></td>
+<td>
+<code><span title="typing.Optional">Optional</span>[str]</code>
+</td>
+<td><p><em>Optional</em>. Comment for this transfer.</p></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>src/CryptoPayAPI/schemas.py</code></summary>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Transfer</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">'''Transfer info.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        transfer_id (int): Unique ID for this transfer.</span>
+<span class="sd">        user_id (int): Telegram user ID the transfer was sent to.</span>
+<span class="sd">        asset (Assets): Currency code.</span>
+<span class="sd">        amount (Decimal): Amount of the transfer.</span>
+<span class="sd">        status (Literal['completed']): Status of the transfer, can be “completed”.</span>
+<span class="sd">        completed_at (datetime): Date the transfer was completed in ISO 8601 format.</span>
+<span class="sd">        comment (Optional[str]): *Optional*. Comment for this transfer.</span>
+<span class="sd">    '''</span>
+    <span class="n">transfer_id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">user_id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">asset</span><span class="p">:</span> <span class="n">Assets</span>
+    <span class="n">amount</span><span class="p">:</span> <span class="n">Decimal</span>
+    <span class="n">status</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s1">'completed'</span><span class="p">]</span>
+    <span class="n">completed_at</span><span class="p">:</span> <span class="n">datetime</span>
+    <span class="n">comment</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+</details>
+<div class="doc doc-children">
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="src.CryptoPayAPI.schemas.Update">
+<code>Update</code>
+</h2>
+<div class="doc doc-contents">
+<p class="doc doc-class-bases">
+        Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
+<p>Webhook update object.</p>
+<p><strong>Attributes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>update_id</code></td>
+<td>
+<code>int</code>
+</td>
+<td><p>Non-unique update ID.</p></td>
+</tr>
+<tr>
+<td><code>update_type</code></td>
+<td>
+<code><a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas.UpdateType" href="#src.CryptoPayAPI.schemas.UpdateType">UpdateType</a></code>
+</td>
+<td><p>Webhook update type.</p></td>
+</tr>
+<tr>
+<td><code>request_date</code></td>
+<td>
+<code><span title="datetime.datetime">datetime</span></code>
+</td>
+<td><p>Date the request was sent in ISO 8601 format.</p></td>
+</tr>
+<tr>
+<td><code>payload</code></td>
+<td>
+<code><a class="autorefs autorefs-internal" title="src.CryptoPayAPI.schemas.Invoice" href="#src.CryptoPayAPI.schemas.Invoice">Invoice</a></code>
+</td>
+<td><p>Payload contains <code>Invoice</code> object.</p></td>
+</tr>
+<tr>
+<td><code>raw_body</code></td>
+<td>
+<code><span title="typing.Optional">Optional</span>[bytes]</code>
+</td>
+<td><p><em>Optional</em>. Raw body of update, for check sign purpose.</p></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>src/CryptoPayAPI/schemas.py</code></summary>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Update</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">'''Webhook update object.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        update_id (int): Non-unique update ID.</span>
+<span class="sd">        update_type (UpdateType): Webhook update type.</span>
+<span class="sd">        request_date (datetime): Date the request was sent in ISO 8601 format.</span>
+<span class="sd">        payload (Invoice): Payload contains `Invoice` object.</span>
+<span class="sd">        raw_body (Optional[bytes]): *Optional*. Raw body of update, for check sign purpose.</span>
+<span class="sd">    '''</span>
+    <span class="n">update_id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">update_type</span><span class="p">:</span> <span class="n">UpdateType</span>
+    <span class="n">request_date</span><span class="p">:</span> <span class="n">datetime</span>
+    <span class="n">payload</span><span class="p">:</span> <span class="n">Invoice</span>
+    <span class="n">raw_body</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">check_signature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">sign</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">'''Check update signature.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            api_key (str): CryptoPay app API key.</span>
+<span class="sd">            sign (str): Update signature. In request headers `crypto-pay-api-signature`.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: Is signature verified?</span>
+<span class="sd">        '''</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Called with args: (</span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">sign</span><span class="si">}</span><span class="s1">)'</span><span class="p">)</span>
+        <span class="n">secret</span> <span class="o">=</span> <span class="n">sha256</span><span class="p">(</span><span class="n">api_key</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
+        <span class="n">hmac</span> <span class="o">=</span> <span class="n">HMAC</span><span class="p">(</span><span class="n">secret</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw_body</span><span class="p">,</span> <span class="n">digestmod</span><span class="o">=</span><span class="n">sha256</span><span class="p">)</span>
+        <span class="n">body_sign</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Calculated hash: </span><span class="si">{</span><span class="n">body_sign</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">body_sign</span> <span class="o">==</span> <span class="n">sign</span>
+</code></pre></div></td></tr></table></div>
+</details>
+<div class="doc doc-children">
+<div class="doc doc-object doc-function">
+<h3 class="doc doc-heading" id="src.CryptoPayAPI.schemas.Update.check_signature">
+<code class="highlight language-python"><span class="n">check_signature</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">sign</span><span class="p">)</span></code>
+</h3>
+<div class="doc doc-contents">
+<p>Check update signature.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>api_key</code></td>
+<td>
+<code>str</code>
+</td>
+<td><p>CryptoPay app API key.</p></td>
+<td>
+<em>required</em>
+</td>
+</tr>
+<tr>
+<td><code>sign</code></td>
+<td>
+<code>str</code>
+</td>
+<td><p>Update signature. In request headers <code>crypto-pay-api-signature</code>.</p></td>
+<td>
+<em>required</em>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th> <th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bool</code></td> <td>
+<code>bool</code>
+</td>
+<td><p>Is signature verified?</p></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>src/CryptoPayAPI/schemas.py</code></summary>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">check_signature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">sign</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">'''Check update signature.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        api_key (str): CryptoPay app API key.</span>
+<span class="sd">        sign (str): Update signature. In request headers `crypto-pay-api-signature`.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        bool: Is signature verified?</span>
+<span class="sd">    '''</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Called with args: (</span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">sign</span><span class="si">}</span><span class="s1">)'</span><span class="p">)</span>
+    <span class="n">secret</span> <span class="o">=</span> <span class="n">sha256</span><span class="p">(</span><span class="n">api_key</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
+    <span class="n">hmac</span> <span class="o">=</span> <span class="n">HMAC</span><span class="p">(</span><span class="n">secret</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw_body</span><span class="p">,</span> <span class="n">digestmod</span><span class="o">=</span><span class="n">sha256</span><span class="p">)</span>
+    <span class="n">body_sign</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Calculated hash: </span><span class="si">{</span><span class="n">body_sign</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">body_sign</span> <span class="o">==</span> <span class="n">sign</span>
+</code></pre></div></td></tr></table></div>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="src.CryptoPayAPI.schemas.UpdateType">
+<code>UpdateType</code>
+</h2>
+<div class="doc doc-contents">
+<p class="doc doc-class-bases">
+        Bases: <code><span title="enum.Enum">Enum</span></code></p>
+<p>Webhook update type.</p>
+<p><strong>Attributes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>INVOICE_PAID</code></td>
+<td>
+<code>str</code>
+</td>
+<td><p>'invoice_paid</p></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>src/CryptoPayAPI/schemas.py</code></summary>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">UpdateType</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">'''Webhook update type.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        INVOICE_PAID (str): 'invoice_paid</span>
+<span class="sd">    '''</span>
+    <span class="n">INVOICE_PAID</span> <span class="o">=</span> <span class="s1">'invoice_paid'</span>
+</code></pre></div></td></tr></table></div>
+</details>
+<div class="doc doc-children">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr/>
+<div class="md-source-file">
+<small>
+    
+      Последнее обновление:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">11 января 2023 г.</span>
+<br/>
+        Дата создания:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">11 января 2023 г.</span>
+</small>
+</div>
+</article>
+</div>
+</div>
+<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+            К началу
+          </a>
+</main>
+<footer class="md-footer">
+<nav aria-label="Нижний колонтитул" class="md-footer__inner md-grid">
+<a aria-label="Назад: CryptoPay" class="md-footer__link md-footer__link--prev" href="../" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Назад
+              </span>
+              CryptoPay
+            </div>
+</div>
+</a>
+<a aria-label="Вперед: Исключения" class="md-footer__link md-footer__link--next" href="../errors/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Вперед
+              </span>
+              Исключения
+            </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright © 2023 Maxim Mosin
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+<div class="md-social">
+<a class="md-social__link" href="https://pypi.org/project/pycryptopay-sdk/" rel="noopener" target="_blank" title="Project on PYPI">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4.1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3.1-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"></path></svg>
+</a>
+<a class="md-social__link" href="https://github.com/LulzLoL231" rel="noopener" target="_blank" title="Author GitHub">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tracking", "navigation.sections", "navigation.top", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.config.lang": "ru", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "\u041f\u043e\u0438\u0441\u043a", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version.title": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}}</script>
+<script src="../../../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>

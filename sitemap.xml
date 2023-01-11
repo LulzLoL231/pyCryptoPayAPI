@@ -1,32 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
-         <loc>None.</loc>
-         <lastmod>2023-01-07</lastmod>
-         <changefreq>daily</changefreq>
-         <xhtml:link rel="alternate" hreflang="en" href="Noneen/"/>
-         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/"/>
-         
-    </url>
-    <url>
          <loc>Noneget_token/</loc>
-         <lastmod>2023-01-07</lastmod>
+         <lastmod>2023-01-11</lastmod>
          <changefreq>daily</changefreq>
          <xhtml:link rel="alternate" hreflang="en" href="Noneen/get_token/"/>
          <xhtml:link rel="alternate" hreflang="ru" href="Noneru/get_token/"/>
          
     </url>
     <url>
+         <loc>None./</loc>
+         <lastmod>2023-01-11</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="Noneen/"/>
+         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/"/>
+         
+    </url>
+    <url>
          <loc>Noneinstall/</loc>
-         <lastmod>2023-01-07</lastmod>
+         <lastmod>2023-01-11</lastmod>
          <changefreq>daily</changefreq>
          <xhtml:link rel="alternate" hreflang="en" href="Noneen/install/"/>
          <xhtml:link rel="alternate" hreflang="ru" href="Noneru/install/"/>
          
     </url>
     <url>
+         <loc>NoneAPI/CryptoPayAPI/errors/</loc>
+         <lastmod>2023-01-11</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="Noneen/API/CryptoPayAPI/errors/"/>
+         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/API/CryptoPayAPI/errors/"/>
+         
+    </url>
+    <url>
+         <loc>NoneAPI/CryptoPayAPI/</loc>
+         <lastmod>2023-01-11</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="Noneen/API/CryptoPayAPI/"/>
+         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/API/CryptoPayAPI/"/>
+         
+    </url>
+    <url>
+         <loc>NoneAPI/CryptoPayAPI/schemas/</loc>
+         <lastmod>2023-01-11</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="Noneen/API/CryptoPayAPI/schemas/"/>
+         <xhtml:link rel="alternate" hreflang="ru" href="Noneru/API/CryptoPayAPI/schemas/"/>
+         
+    </url>
+    <url>
          <loc>Noneexamples/get_me/</loc>
-         <lastmod>2023-01-07</lastmod>
+         <lastmod>2023-01-11</lastmod>
          <changefreq>daily</changefreq>
          <xhtml:link rel="alternate" hreflang="en" href="Noneen/examples/get_me/"/>
          <xhtml:link rel="alternate" hreflang="ru" href="Noneru/examples/get_me/"/>
@@ -34,7 +58,7 @@
     </url>
     <url>
          <loc>Noneexamples/testnet_usage/</loc>
-         <lastmod>2023-01-07</lastmod>
+         <lastmod>2023-01-11</lastmod>
          <changefreq>daily</changefreq>
          <xhtml:link rel="alternate" hreflang="en" href="Noneen/examples/testnet_usage/"/>
          <xhtml:link rel="alternate" hreflang="ru" href="Noneru/examples/testnet_usage/"/>
@@ -42,7 +66,7 @@
     </url>
     <url>
          <loc>Noneexamples/transfer_usage/</loc>
-         <lastmod>2023-01-07</lastmod>
+         <lastmod>2023-01-11</lastmod>
          <changefreq>daily</changefreq>
          <xhtml:link rel="alternate" hreflang="en" href="Noneen/examples/transfer_usage/"/>
          <xhtml:link rel="alternate" hreflang="ru" href="Noneru/examples/transfer_usage/"/>
@@ -50,7 +74,7 @@
     </url>
     <url>
          <loc>Noneexamples/webhook_example/</loc>
-         <lastmod>2023-01-07</lastmod>
+         <lastmod>2023-01-11</lastmod>
          <changefreq>daily</changefreq>
          <xhtml:link rel="alternate" hreflang="en" href="Noneen/examples/webhook_example/"/>
          <xhtml:link rel="alternate" hreflang="ru" href="Noneru/examples/webhook_example/"/>
