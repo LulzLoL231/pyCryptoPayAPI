@@ -26,7 +26,7 @@ class CryptoPay:
     '''
     def __init__(
         self, api_key: str, testnet: bool = False,
-        client: AsyncClient | None = None
+        client: Optional[AsyncClient] = None
     ) -> None:
         '''
         Args:
